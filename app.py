@@ -12,6 +12,10 @@ def hello_flask():
 def test():
     return 'Hello World!'
 
+@app.route('/login')
+def login():
+    return render_template('index.html')
+
 @app.route('/login_confirm', methods=['POST'])
 def login_comfirm():
     id = request.form['id']

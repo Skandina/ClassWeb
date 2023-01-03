@@ -3,7 +3,7 @@
 <head>
     <style> @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins:wght@300&display=swap'); </style>    
     <title>Dina's Korean class</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 </head>
 <body>
     <div class ="wrap">
@@ -12,7 +12,7 @@
                 <h3>Welcome</h3>
             </div>
             <div class="box">
-                <img class="profile" src="newtokki.jpg">
+		    <img class="profile" src="{{ url_for('static', filename='newtokki.jpg') }}"/>
             </div>
             <div class="username">
                 <h4>Username</h4>
