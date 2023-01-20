@@ -4,13 +4,9 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/hello_flask')
-def hello_flask():
-    return render_template('hello_flask.html')
-
 @app.route('/')
 def test():
-    return 'Hello World!'
+    return render_template('hello_flask.html')
 
 @app.route('/login')
 def login():
