@@ -6,11 +6,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def test():
-    return render_template('hello_flask.html')
+    return render_template('index.html')
 
 @app.route('/login')
 def login():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/login_confirm', methods=['POST'])
 def login_comfirm():
