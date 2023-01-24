@@ -39,24 +39,23 @@
     font-size:15px;
 }
 .username input {
-    width: 250px;
+    width: 290px;
     height: 50px;
     border-radius: 30px;
-    padding: 0px 20px;
+    padding: 0px 0px;
     border: 1px solid lightgray;
     outline: none;
   }
 
 .password {
-    width: 80%;
     font-size:15px;
 }
   
 .password input {
-    width: 250px;
+    width: 290px;
     height: 50px;
     border-radius: 30px;
-    padding: 0px 20px;
+    padding: 0px 0px;
     border: 1px solid lightgray;
     outline: none;
 }
@@ -69,7 +68,7 @@
     width: 290px;
     height: 50px;
     border-radius: 30px;
-    margin: 0px 20px;
+    margin: 0px 0px;
     border: 0;
     background: linear-gradient(to left, rgb(255, 77, 46), rgb(255, 155, 47));
     color: white;
