@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <style> @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins:wght@300&display=swap'); </style>    
+  <head>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&family=Poppins:wght@300&display=swap");
+    </style>
     <title>Dina's Korean class</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-</head>
-<body>
-    <div class ="wrap">
-        <div class="login">
-            <div class="welcome">
-                <h3>Welcome</h3>
-            </div>
-            <div class="box">
-		    <img class="profile" src="{{ url_for('static', filename='newtokki.jpg') }}"/>
-            </div>
-	    <form action ="/login_check" method="post">
-	        <div class="username">
-                	<h4>Username</h4>
-                	<input type="text" name="id" placeholder="    Username">
-            </div>
-            <div class="password">
-                	<h4>Password</h4>
-                	<input type="password" name="pwd" placeholder="    Password">
-            </div>
-			<div class="submit"> 
-				<input type="submit" value="LOGIN">
-			</div>	 
-	    </form>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="login">
+        <div class="welcome">
+          <h3>Welcome</h3>
         </div>
-    </div>    
-</body>
+        <div class="box">
+          <img
+            class="profile"
+            src="{{ url_for('static', filename='newtokki.jpg') }}"
+          />
+        </div>
+        <form action="/login_check" method="post">
+          <div class="username">
+            <h4>Username</h4>
+            <input type="text" name="id" placeholder="Username" />
+          </div>
+          <div class="password">
+            <h4>Password</h4>
+            <input type="password" name="pwd" placeholder="Password" />
+          </div>
+          <div class="submit">
+            <input type="submit" value="LOGIN" />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
