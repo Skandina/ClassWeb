@@ -1,0 +1,104 @@
+body {
+  height: 100vh;
+  background-color: rgb(245, 244, 240);
+}
+
+/* Header */
+.wrap {
+  background-color: rgb(245, 244, 240);
+}
+header {
+  width: 100%;
+}
+#gnb {
+  padding: 8px 12px;
+  position: relative;
+}
+#gnb h1 {
+  float: left;
+  margin-right: 30px;
+  font-size: 24px;
+  font-weight: 900;
+  padding: 8px;
+}
+nav {
+  height: 40px;
+}
+
+nav,
+nav #menu-list,
+nav #top-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav #menu-list li,
+nav #top-menu li {
+  padding: 8px;
+  cursor: pointer;
+}
+nav #menu-list li:hover,
+nav #top-menu li:hover {
+  background-color: rgb(151, 134, 118);
+  border-radius: 4px;
+  color: #fff;
+}
+nav #menu-list li:hover a,
+nav #top-menu li:hover a {
+  color: #fff;
+}
+nav #menu-list li a {
+  font-size: 0.9em;
+  font-weight: 600;
+}
+nav #top-menu li a {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.toggleBtn {
+  /* display: block; */
+  position: absolute;
+  width: 24px;
+  top: 18px;
+  right: 20px;
+  display: none;
+  cursor: pointer;
+}
+.toggleBtn span {
+  display: block;
+  background: rgb(30, 29, 27);
+  height: 4px;
+  margin-bottom: 4px;
+}
+.toggleBtn span:last-child {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 24px;
+    margin-top: 40px;
+  }
+  nav #menu-list,
+  nav #top-menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  nav #menu-list.active,
+  nav #top-menu.active {
+    display: flex;
+  }
+  nav #menu-list li,
+  nav #top-menu li {
+    width: 100%;
+    text-align: center;
+  }
+  .toggleBtn {
+    display: block;
+  }
+}
