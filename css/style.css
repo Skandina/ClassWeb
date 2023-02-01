@@ -5,12 +5,12 @@
 
 body {
   height: 100vh;
-  background-color: rgb(245, 244, 240);
+  /* background-color: rgb(245, 244, 240); */
 }
 
 /* HEADER */
 .wrap {
-  background-color: rgb(245, 244, 240);
+  /* background-color: rgb(245, 244, 240); */
 }
 header {
   width: 100%;
@@ -45,7 +45,7 @@ nav #top-menu li {
 }
 nav #menu-list li:hover,
 nav #top-menu li:hover {
-  background-color: rgb(151, 134, 118);
+  background-color: rgb(82, 179, 185);
   border-radius: 4px;
   color: #fff;
 }
@@ -136,12 +136,13 @@ nav #top-menu li a {
   font-weight: 700;
   text-align: center;
 }
-#login h4,
-#signup h4 {
+#login label,
+#signup label {
   color: rgb(191, 194, 187);
   margin-bottom: 10px;
   font-size: 1em;
   font-weight: 500;
+  display: inline-block;
 }
 #login-id {
   margin-top: 24px;
@@ -206,6 +207,9 @@ input[type="checkbox"] {
   color: rgb(228, 226, 229);
   font-size: 1em;
   font-weight: 600;
+}
+.submit input[type="submit"]:disabled {
+  background: rgba(191, 194, 187, 0.6);
 }
 
 /* SIGN UP */
