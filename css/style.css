@@ -9,9 +9,6 @@ body {
 }
 
 /* HEADER */
-.wrap {
-  /* background-color: rgb(245, 244, 240); */
-}
 header {
   width: 100%;
 }
@@ -109,7 +106,7 @@ nav #top-menu li a {
 }
 
 /* LOGIN */
-.container {
+.wrap {
   width: 100%;
   height: 100vh;
   display: flex;
