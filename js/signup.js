@@ -3,11 +3,11 @@
 const username = document.querySelector("#signup-name");
 const usernameInput = username.querySelector("#signup-name input");
 const email = document.querySelector("#signup-id");
-const emailInput = document.querySelector("#signup-id input");
+const emailInput = email.querySelector("#signup-id input");
 const pw = document.querySelector("#signup-pw");
-const pwInput = document.querySelector("#signup-pw input");
+const pwInput = pw.querySelector("#signup-pw input");
 const rePw = document.querySelector("#confirm-pw");
-const rePwInput = document.querySelector("#confirm-pw input");
+const rePwInput = rePw.querySelector("#confirm-pw input");
 const signUpBtn = document.querySelector(".submit input");
 
 // validate name
@@ -105,15 +105,32 @@ function validatePassword() {
   } else {
     removeError(pw);
   }
+}
 
-  // if (pwInput.value !== rePwInput.value) {
-  //   removeError(rePw);
-  //   setClassError();
-  //   error.innerText = "Password don't match.";
-  //   rePw.appendChild(error);
-  // } else {
-  //   removeError(rePw);
-  // }
+function confirmPassword() {
+  const error = document.createElement("p");
+  const errorElement = rePw.querySelector(".error");
+
+  // remove error
+  function removeError(child) {
+    if (child.contains(errorElement)) {
+      child.removeChild(errorElement);
+    }
+  }
+  // set class error
+  function setClassError() {
+    error.setAttribute("class", "error");
+  }
+
+  if (pwInput.value !== rePwInput.value) {
+    removeError(rePw);
+    setClassError();
+    error.innerText = "Password don't match.";
+    rePw.appendChild(error);
+    console.log(rePw.contains(errorElement));
+  } else {
+    removeError(rePw);
+  }
 }
 
 function signupHandle(event) {
@@ -121,6 +138,7 @@ function signupHandle(event) {
   validateName();
   validateEmail();
   validatePassword();
+  confirmPassword();
 }
 
 signUpBtn.addEventListener("click", signupHandle);
