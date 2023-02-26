@@ -25,25 +25,45 @@
         <h2>SIGN UP</h2>
         <div id="signup-name">
           <label>Name</label>
-          <input type="text" name="" placeholder="Enter your name" />
+          <input
+            onInput="validateName(); activeSignupBtn();"
+            type="text"
+            name=""
+            placeholder="Enter your name"
+          />
         </div>
         <div id="signup-id">
           <label>E-mail</label>
-          <input type="email" name="" placeholder="Enter your email" />
+          <input
+            onInput="validateEmail(); activeSignupBtn();"
+            type="email"
+            name=""
+            placeholder="Enter your email"
+          />
         </div>
         <div id="signup-pw">
           <label>Password</label>
-          <input type="password" name="" placeholder="Enter password" />
+          <input
+            onInput="validatePassword(); activeSignupBtn();"
+            type="password"
+            name=""
+            placeholder="Enter password"
+          />
         </div>
         <div id="confirm-pw">
           <label>Confirm Password</label>
-          <input type="password" name="" placeholder="Enter password" />
+          <input
+            onInput="confirmPassword(); activeSignupBtn();"
+            type="password"
+            name=""
+            placeholder="Enter password"
+          />
         </div>
         <div class="checkbox agreement">
           <input type="checkbox" name="" /> I agree to the terms and conditions
         </div>
         <div class="submit">
-          <input type="submit" value="Sign up" />
+          <input disabled type="submit" value="Sign up" />
         </div>
         <div class="sns">
           <h6>Or sign up with</h6>

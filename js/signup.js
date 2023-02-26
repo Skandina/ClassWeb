@@ -8,7 +8,7 @@ const pw = document.querySelector("#signup-pw");
 const pwInput = pw.querySelector("#signup-pw input");
 const rePw = document.querySelector("#confirm-pw");
 const rePwInput = rePw.querySelector("#confirm-pw input");
-const signUpBtn = document.querySelector(".submit input");
+let signUpBtn = document.querySelector(".submit input");
 
 // validate name
 function validateName() {
@@ -39,6 +39,7 @@ function validateName() {
     username.appendChild(error);
   } else {
     removeError(username);
+    return true;
   }
 }
 
@@ -71,6 +72,7 @@ function validateEmail() {
     email.appendChild(error);
   } else {
     removeError(email);
+    return true;
   }
 }
 
@@ -104,6 +106,7 @@ function validatePassword() {
     pw.appendChild(error);
   } else {
     removeError(pw);
+    return true;
   }
 }
 
@@ -127,18 +130,32 @@ function confirmPassword() {
     setClassError();
     error.innerText = "Password don't match.";
     rePw.appendChild(error);
-    console.log(rePw.contains(errorElement));
   } else {
     removeError(rePw);
+    return true;
+  }
+}
+
+function activeSignupBtn() {
+  if (
+    validateName() === true &&
+    validateEmail() === true &&
+    validatePassword() === true &&
+    confirmPassword() === true
+  ) {
+    signUpBtn.disabled = false;
+  } else {
+    signUpBtn.disabled = true;
   }
 }
 
 function signupHandle(event) {
   event.preventDefault();
-  validateName();
-  validateEmail();
-  validatePassword();
-  confirmPassword();
+  // validateName();
+  // validateEmail();
+  // validatePassword();
+  // confirmPassword();
+  // activeSignupBtn();
 }
 
 signUpBtn.addEventListener("click", signupHandle);
