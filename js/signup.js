@@ -145,17 +145,13 @@ function activeSignupBtn() {
   ) {
     signUpBtn.disabled = false;
   } else {
+    console.log("disabled");
     signUpBtn.disabled = true;
   }
 }
 
 function signupHandle(event) {
   event.preventDefault();
-  // validateName();
-  // validateEmail();
-  // validatePassword();
-  // confirmPassword();
-  // activeSignupBtn();
 }
 
 signUpBtn.addEventListener("click", signupHandle);

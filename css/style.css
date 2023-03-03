@@ -23,6 +23,9 @@ header {
   font-weight: 900;
   padding: 8px;
 }
+#gnb h1 .link-home {
+  color: rgb(191, 194, 187);
+}
 nav {
   height: 40px;
 }
@@ -109,9 +112,9 @@ nav #top-menu li a {
 .wrap {
   width: 100%;
   height: 100vh;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; */
   background: linear-gradient(127deg, rgb(26, 59, 64), rgba(66, 105, 110, 0.9));
 }
 .error {
@@ -128,6 +131,7 @@ nav #top-menu li a {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  margin: 40px auto 0;
 }
 #login h2,
 #signup h2 {
@@ -190,9 +194,16 @@ input[type="checkbox"] {
   margin-bottom: 0 !important;
   vertical-align: middle;
 }
+#login-etc div:first-child {
+  float: left;
+}
+#login-etc div:last-child {
+  float: right;
+}
 
-#login-etc .forgot-pw a {
+#login-etc a {
   color: rgba(82, 179, 185, 0.8);
+  padding: 2px;
 }
 
 .submit {
