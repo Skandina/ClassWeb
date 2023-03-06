@@ -1,0 +1,24 @@
+/* Tab menu */
+.nav-link,
+.nav-link.disabled {
+  color: rgba(66, 105, 110, 0.9);
+}
+.nav-tabs .nav-link.active,
+.nav-link:focus,
+.nav-link:hover {
+  color: rgba(82, 179, 185, 1);
+}
+
+/* Search */
+.search {
+  margin: 14px 0;
+}
+
+/* List */
+.table thead {
+  border-top: 1px solid #495057;
+}
+.table th,
+.table td {
+  border-bottom: 1px solid #dee2e6;
+}

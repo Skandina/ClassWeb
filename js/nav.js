@@ -1,3 +1,5 @@
+`use strict`;
+
 const toggleBtn = document.querySelector(".toggleBtn");
 const menu = document.querySelector("#menu-list");
 const topMenu = document.querySelector("#top-menu");
