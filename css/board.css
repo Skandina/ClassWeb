@@ -14,11 +14,16 @@
   margin: 14px 0;
 }
 
-/* List */
-.table thead {
-  border-top: 1px solid #495057;
+/* Contents */
+.card {
+  height: 6.25 em;
+  flex-direction: row;
 }
-.table th,
-.table td {
-  border-bottom: 1px solid #dee2e6;
+.card-img-top {
+  width: 150px;
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+.card-text.date {
+  font-size: 0.85em;
+  color: #495057;
 }
