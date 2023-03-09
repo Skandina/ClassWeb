@@ -7,7 +7,7 @@ const contents = [
     date: "2023-03-06",
     image: "bibimbap.jpg",
     detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   },
   {
     level: "Intermediate",
@@ -52,16 +52,16 @@ if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
   });
 }
 
-// tab 클릭 시
+// tab 클릭 시 filter
 function handleTabClick(e) {
-  // 먼저 있던 active class 삭제하기
+  //// 먼저 있던 active class 삭제하기
   for (let tab of tabs) {
     if (tab.classList.contains(ACTIVE_CLASSNAME)) {
       tab.classList.remove(ACTIVE_CLASSNAME);
     }
   }
 
-  // 기존 데이터 삭제하기
+  //// 기존 데이터 삭제하기
   const cardHtmlChilds = document.querySelectorAll("#card-wrap div");
   if (cardHtml.hasChildNodes()) {
     for (let child of cardHtmlChilds) {
@@ -69,7 +69,7 @@ function handleTabClick(e) {
     }
   }
 
-  // filtering 데이터 보여주기
+  //// filtering 데이터 보여주기
   const value = e.target.getAttribute("data-value");
   if (value === "Beginner") {
     contents
@@ -100,6 +100,7 @@ function handleTabClick(e) {
   }
 }
 
+// card html 생성
 function createCard(content) {
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card", "mb-3");
@@ -116,7 +117,8 @@ function createCard(content) {
   const cardText = document.createElement("p");
   cardText.classList.add("card-text");
   cardText.textContent = content.detail;
-  let cardDate = document.createElement("p");
+
+  const cardDate = document.createElement("p");
   const months = [
     "January",
     "February",
@@ -131,18 +133,20 @@ function createCard(content) {
     "November",
     "December",
   ];
+  const formatDate = new Date(content.date);
+  const month = months[formatDate.getMonth()];
+  const date = formatDate.getDate();
+  const year = formatDate.getFullYear();
+  cardDate.textContent = `${month} ${date}, ${year}`;
   cardDate.classList.add("card-text", "date");
-  cardDate.textContent = new Date(content.date);
-  // date format 진행중
-  // console.log(cardDate.textContent);
-  // console.log(months[currentMonth.getMonth()]);
 
   cardBodyDiv.appendChild(cardTitle);
   cardBodyDiv.appendChild(cardText);
   cardBodyDiv.appendChild(cardDate);
 
   cardDiv.appendChild(cardBodyDiv);
-
   docFragment.append(cardDiv);
   cardHtml.appendChild(docFragment);
 }
+
+// search
