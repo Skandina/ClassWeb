@@ -62,16 +62,41 @@
       <!-- tab menu -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">All</a>
+          <a
+            onClick="handleTabClick(event)"
+            class="nav-link active tab-all"
+            aria-current="page"
+            href="#"
+            data-value="All"
+            >All</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Beginner</a>
+          <a
+            onClick="handleTabClick(event)"
+            class="nav-link tab-beginner"
+            href="#"
+            data-value="Beginner"
+            >Beginner</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Intermediate</a>
+          <a
+            onClick="handleTabClick(event)"
+            class="nav-link tab-intermediate"
+            href="#"
+            data-value="Intermediate"
+            >Intermediate</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">Advanced</a>
+          <a
+            onClick="handleTabClick(event)"
+            class="nav-link tab-advanced"
+            href="#"
+            data-value="Advanced"
+            >Advanced</a
+          >
         </li>
       </ul>
       <!-- search -->
@@ -87,29 +112,8 @@
           <i class="fas fa-search"></i>
         </span>
       </div>
-      <!-- list -->
-      <table class="table table-hover table-responsive-md">
-        <caption>
-          List of
-        </caption>
-        <thead>
-          <tr>
-            <th scope="col">No.</th>
-            <th scope="col">Level</th>
-            <th scope="col">Title</th>
-            <th scope="col">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <!-- Beginner/Intermediate/Advanced -->
-            <td>Beginner</td>
-            <td>Korean food recipe</td>
-            <td>2023-03-06</td>
-          </tr>
-        </tbody>
-      </table>
+      <!-- contents -->
+      <div id="card-wrap"></div>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
