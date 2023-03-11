@@ -63,7 +63,7 @@
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a
-            onClick="handleTabClick(event)"
+            onclick="handleTabClick(event)"
             class="nav-link active tab-all"
             aria-current="page"
             href="#"
@@ -73,7 +73,7 @@
         </li>
         <li class="nav-item">
           <a
-            onClick="handleTabClick(event)"
+            onclick="handleTabClick(event)"
             class="nav-link tab-beginner"
             href="#"
             data-value="Beginner"
@@ -82,7 +82,7 @@
         </li>
         <li class="nav-item">
           <a
-            onClick="handleTabClick(event)"
+            onclick="handleTabClick(event)"
             class="nav-link tab-intermediate"
             href="#"
             data-value="Intermediate"
@@ -91,7 +91,7 @@
         </li>
         <li class="nav-item">
           <a
-            onClick="handleTabClick(event)"
+            onclick="handleTabClick(event)"
             class="nav-link tab-advanced"
             href="#"
             data-value="Advanced"
@@ -102,6 +102,7 @@
       <!-- search -->
       <div class="search input-group rounded">
         <input
+          onchange="searchCard(event)"
           type="search"
           class="form-control rounded"
           placeholder="Search"

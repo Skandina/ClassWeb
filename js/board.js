@@ -45,6 +45,8 @@ const ACTIVE_CLASSNAME = "active";
 const docFragment = new DocumentFragment();
 const cardHtml = document.querySelector("#card-wrap");
 
+const search = document.querySelector(".search");
+
 // 첫 화면이 All인 경우, contents 다 보여주기
 if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
   contents.map((content) => {
@@ -69,7 +71,7 @@ function handleTabClick(e) {
     }
   }
 
-  //// filtering 데이터 보여주기
+  //// level별 데이터 보여주기
   const value = e.target.getAttribute("data-value");
   if (value === "Beginner") {
     contents
@@ -149,4 +151,21 @@ function createCard(content) {
   cardHtml.appendChild(docFragment);
 }
 
-// search
+// search card
+function searchCard(event) {
+  const cards = cardHtml.childNodes;
+  const searchValue = event.target.value.toLowerCase();
+  for (let card of cards) {
+    const arr = Array.from(card.children[1].children);
+
+    // title이나 detail 중에서 search input 값이 포함되는 card 보여주기
+    if (
+      arr[0].innerText.toLowerCase().includes(searchValue) ||
+      arr[1].innerText.toLowerCase().includes(searchValue)
+    ) {
+      card.style.display = "flex";
+    } else {
+      card.style.display = "none";
+    }
+  }
+}
