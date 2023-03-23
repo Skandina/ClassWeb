@@ -43,9 +43,11 @@ const tabAdvanced = document.querySelector(".tab-advanced");
 const ACTIVE_CLASSNAME = "active";
 
 const docFragment = new DocumentFragment();
-const cardHtml = document.querySelector("#card-wrap");
+const cardHtml = document.querySelector("#card-box");
 
 const search = document.querySelector(".search");
+
+const pagination = document.querySelector(".container>nav");
 
 // 첫 화면이 All인 경우, contents 다 보여주기
 if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
@@ -64,7 +66,7 @@ function handleTabClick(e) {
   }
 
   //// 기존 데이터 삭제하기
-  const cardHtmlChilds = document.querySelectorAll("#card-wrap div");
+  const cardHtmlChilds = document.querySelectorAll("#card-box div");
   if (cardHtml.hasChildNodes()) {
     for (let child of cardHtmlChilds) {
       child.remove();
@@ -169,3 +171,50 @@ function searchCard(event) {
     }
   }
 }
+
+// card 클릭 시, contents detail show
+const cardItems = document.querySelectorAll(".card");
+const cardDetail = document.querySelector("#card-detail");
+console.log(cardItems);
+function showCardDetail(event) {
+  console.log("card click");
+  cardHtml.style.display = "none";
+  pagination.style.display = "none";
+  cardDetail.style.display = "block";
+  // 클릭한 card 내용 채우기
+  if (event.target.className === "card-img-top") {
+    // title
+    cardDetail.children[0].innerText =
+      event.target.nextSibling.children[0].innerText;
+    // date
+    cardDetail.children[1].innerText =
+      event.target.nextSibling.children[2].innerText;
+    // img
+    cardDetail.children[2].src = event.target.src;
+    // detail
+    cardDetail.children[3].innerText =
+      event.target.nextSibling.children[1].innerText;
+  } else if (event.target.parentElement.className === "card-body") {
+    // title
+    cardDetail.children[0].innerText =
+      event.target.parentElement.children[0].innerText;
+    // date
+    cardDetail.children[1].innerText =
+      event.target.parentElement.children[2].innerText;
+    // img
+    cardDetail.children[2].src = event.target.parentElement.previousSibling.src;
+    // detail
+    cardDetail.children[3].innerText =
+      event.target.parentElement.children[1].innerText;
+  } else if (event.target.className === "card-body") {
+    // title
+    cardDetail.children[0].innerText = event.target.children[0].innerText;
+    // date
+    cardDetail.children[1].innerText = event.target.children[2].innerText;
+    // img
+    cardDetail.children[2].src = event.target.previousSibling.src;
+    // detail
+    cardDetail.children[3].innerText = event.target.children[1].innerText;
+  }
+}
+cardItems.forEach((e) => e.addEventListener("click", showCardDetail));
