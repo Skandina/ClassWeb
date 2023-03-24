@@ -10,7 +10,7 @@ app.use("/public/css", express.static(__dirname + '/public/css'));
 app.use("/public", express.static(__dirname +'/public'));
 
 app.get(["/", "/index.html"], (req, res) => {
-	res.sendFile(__dirname + 'public/index.html');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(port, () => {
