@@ -35,3 +35,12 @@
   color: #495057;
   margin-top: 10px;
 }
+
+/* contents detail */
+#card-detail {
+  display: none;
+}
+#card-detail small {
+  font-size: 0.8em;
+  color: #495057;
+}

@@ -6,11 +6,11 @@ const publicPath = path.join(__dirname, '../public')
 const port = 8000
 
 app.use(express.static(publicPath))
-app.use("/public/css", express.static(__dirname + '/public/css'));
+app.use("/js", express.static(__dirname + '/js'));
 app.use("/public", express.static(__dirname +'/public'));
 
 app.get(["/", "/index.html"], (req, res) => {
-	res.sendFile(__dirname + 'public/index.html');
+	res.sendFile(__dirname + '/public/index.html');
 });
 
 app.listen(port, () => {

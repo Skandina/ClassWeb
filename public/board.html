@@ -58,7 +58,7 @@
         </span>
       </div>
     </header>
-    <div class="container">
+    <div id="card-wrap" class="container">
       <!-- tab menu -->
       <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -114,7 +114,33 @@
         </span>
       </div>
       <!-- contents -->
-      <div id="card-wrap"></div>
+      <div id="card-box"></div>
+      <!-- pagination -->
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- contents detail -->
+      <div class="border-top"></div>
+      <div id="card-detail" class="contai">
+        <h2 class="m-3 display-6"></h2>
+        <small class="d-block m-3"></small>
+        <img src="" class="d-block mx-auto img-fluid" alt="Responsive image" />
+        <p class="m-3 pb-5 lead"></p>
+      </div>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
@@ -124,6 +150,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="js/board.js"></script>
+    <script src="../js/board.js"></script>
   </body>
 </html>
+
