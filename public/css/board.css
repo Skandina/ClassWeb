@@ -44,3 +44,8 @@
   font-size: 0.8em;
   color: #495057;
 }
+
+/* pagination */
+#card-wrap nav {
+  justify-content: center;
+}

@@ -33,6 +33,70 @@ const contents = [
     detail:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
   },
+  {
+    level: "Beginner",
+    title: "Korean food recipe",
+    date: "2023-03-06",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Intermediate",
+    title: "recipe2",
+    date: "2023-03-06",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Advanced",
+    title: "recipe3",
+    date: "2023-05-20",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Beginner",
+    title: "recipe4",
+    date: "2023-06-15",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Beginner",
+    title: "Korean food recipe",
+    date: "2023-03-06",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Intermediate",
+    title: "recipe2",
+    date: "2023-03-06",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Advanced",
+    title: "recipe3",
+    date: "2023-05-20",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
+  {
+    level: "Beginner",
+    title: "recipe4",
+    date: "2023-06-15",
+    image: "bibimbap.jpg",
+    detail:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+  },
 ];
 
 const tabs = document.querySelectorAll("a.nav-link");
@@ -54,6 +118,7 @@ if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
   contents.map((content) => {
     createCard(content);
   });
+  // renderPagination(contents.length, 1);
 }
 
 // tab 클릭 시 filter
@@ -175,7 +240,6 @@ function searchCard(event) {
 // card 클릭 시, contents detail show
 const cardItems = document.querySelectorAll(".card");
 const cardDetail = document.querySelector("#card-detail");
-console.log(cardItems);
 function showCardDetail(event) {
   console.log("card click");
   cardHtml.style.display = "none";
@@ -218,3 +282,49 @@ function showCardDetail(event) {
   }
 }
 cardItems.forEach((e) => e.addEventListener("click", showCardDetail));
+
+// pagination
+function renderPagination(totalData, currentPage) {
+  const dataPerPage = 5;
+  const pageCount = 10;
+
+  const totalPage = Math.ceil(totalData / dataPerPage);
+  const pageGroup = Math.ceil(currentPage / pageCount);
+
+  let last = pageGroup * pageCount;
+  console.log("last", last);
+  if (last > totalPage) last = totalPage;
+  let first = last - (pageCount - 1);
+  const next = last + 1;
+  const prev = first - 1;
+
+  if (totalPage < 1) first = last;
+  const pages = document.querySelector(".pagination");
+  console.log("first", first);
+  if (first > 10) {
+    pages.insertAdjacentHTML(
+      "afterbegin",
+      `<li class='page-item'><a onclick='getTarget(${prev})' class="page-link" aria-label="Previous"'><span aria-hidden="true">&laquo;</span></a></li>`
+    );
+  }
+  for (let i = first; i <= last; i++) {
+    if (currentPage === i) {
+      pages.insertAdjacentHTML(
+        "beforeend",
+        `<li class='active page-item'><a onclick='getTarget(${i})' class='page-link'>${i}</a></li>`
+      );
+    } else if (i > 0) {
+      pages.insertAdjacentHTML(
+        "beforeend",
+        `<li class='page-item'><a onclick='getTarget(${i})' class='page-link'>${i}</a></li>`
+      );
+    }
+  }
+  if (next > 10 && next < totalPage) {
+    pages.insertAdjacentHTML(
+      "beforeend",
+      `<li class='page-item'><a onclick='getTarget(${next})' class="page-link" aria-label="Next"'><span aria-hidden="true">&raquo;</span></a></li>`
+    );
+  }
+}
+renderPagination(150, 1);
