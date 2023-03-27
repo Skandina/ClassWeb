@@ -13,6 +13,8 @@ app.get(["/", "/index.html"], (req, res) => {
 	res.sendFile(__dirname + '/public/index.html');
 });
 
+
+
 app.listen(port, () => {
 	console.log(`Server listening on port ${port}...`)
 });
