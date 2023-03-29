@@ -3,7 +3,7 @@
 .nav-link.disabled {
   color: rgba(66, 105, 110, 0.9);
 }
-.nav-tabs .nav-link.active,
+.nav-link.active,
 .nav-link:focus,
 .nav-link:hover {
   color: rgba(82, 179, 185, 1);
@@ -16,13 +16,7 @@
 
 /* Contents */
 .card {
-  height: 28vw;
-  max-height: 160px;
-  flex-direction: row;
-}
-.card-img-top {
-  width: 150px;
-  border-radius: 0.375rem 0 0 0.375rem;
+  width: 18rem;
 }
 .card-text {
   display: -webkit-box;
