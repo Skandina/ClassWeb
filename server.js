@@ -25,7 +25,7 @@ const getConn = async() => {
 	return await pool.getConnection(async (conn) => conn);
 };
 
-app.get('/test', async (req,res) => {
+app.get('/login', async (req,res) => {
 	const conn = await getConn();
 	const query = 'SELECT * FROM member_table';
 	let [rows, fields] = await conn.query(query, []);
@@ -33,6 +33,16 @@ app.get('/test', async (req,res) => {
 
 	res.send(rows);
 });
+
+app.post('/signup', async (req,res) => {
+	const conn = await getConn();
+	const query = 'INSERT INTO member_table';
+	let [rows, fields] = await conn.query(query, []);
+	conn.release();
+
+	res.send(rows);
+});
+
 
 app.listen('8000', () => {
 	console.log('Server started');
