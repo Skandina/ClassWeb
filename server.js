@@ -42,9 +42,17 @@ let email = req.body.email;
 if (!username) {
 return res.status(400).send({ error:true, message: 'Please provide user' });
 }
+
 dbConn.query("INSERT INTO member_table SET ? ", { username: username, pw:pw, pw_confirm:pw_confirm, email:email }, function (error, results, fields) {
 if (error) throw error;
 return res.send({ error: false, data: results, message: 'New user has been created successfully.' });
+});
+});
+
+app.get('/test_data', function (req, res) {
+	dbConn.query('SELECT contents FROM data_text WHERE id=1', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
 });
 });
 
