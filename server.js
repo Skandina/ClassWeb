@@ -49,13 +49,6 @@ return res.send({ error: false, data: results, message: 'New user has been creat
 });
 });
 
-app.get('/test_data', function (req, res) {
-	dbConn.query('SELECT contents FROM data_text WHERE id=1', function (error, results, fields) {
-if (error) throw error;
-return res.send(results);
-});
-});
-
 //  Update user with id
 //app.put('/user', function (req, res) {
 //let user_id = req.body.user_id;
@@ -80,6 +73,21 @@ if (error) throw error;
 return res.send({ error: false, data: results, message: 'User has been updated successfully.' });
 });
 });
+
+//testing for getting data
+app.get('/test_text', function (req, res) {
+	dbConn.query('SELECT contents FROM data_text WHERE id=1', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+app.get('/test_img', function (req, res) {
+	dbConn.query('SELECT convert(img_contents USING utf8)FROM images WHERE id=1', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
 app.listen(8000, function () {
 console.log('Node app is running on port 8000');
 });
