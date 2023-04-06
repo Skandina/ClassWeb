@@ -22,10 +22,10 @@ user: 'kuser',
 password: 'sejhkweb',
 database: 'members'
 });
-// connect to database
+
 dbConn.connect(); 
 
-//get all member's information
+// get all members
 app.get('/member', function (req, res) {
 dbConn.query('SELECT * FROM member_table', function (error, results, fields) {
 if (error) throw error;
@@ -33,7 +33,7 @@ return res.send({ error: false, data: results, message: 'members list.' });
 });
 });
 
-//add a member
+// add a member
 app.post('/signup', function (req, res) {
 let username = req.body.username;
 let pw = req.body.pw;
@@ -42,12 +42,99 @@ let email = req.body.email;
 if (!username) {
 return res.status(400).send({ error:true, message: 'Please provide user' });
 }
-
 dbConn.query("INSERT INTO member_table SET ? ", { username: username, pw:pw, pw_confirm:pw_confirm, email:email }, function (error, results, fields) {
 if (error) throw error;
 return res.send({ error: false, data: results, message: 'New user has been created successfully.' });
 });
 });
+
+// delete a member
+app.delete('/member', function (req, res) {
+let id = req.body.id;
+if (!id) {
+return res.status(400).send({ error: true, message: 'Please provide id' });
+}
+dbConn.query('DELETE FROM member_table  WHERE id = ?', [id], function (error, results, fields) {
+if (error) throw error;
+return res.send({ error: false, data: results, message: 'User has been updated successfully.' });
+});
+});
+
+// getting text data 
+app.get('/text', function (req, res) {
+	dbConn.query('SELECT * FROM data_text', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
+// getting text data by id 
+app.get('/textbyid', function (req, res) {
+let id = req.body.id;
+	dbConn.query('SELECT contents FROM data_text WHERE id=?', [id], function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
+
+// getting image data
+app.get('/img', function (req, res) {
+	dbConn.query('SELECT convert(img_contents USING utf8) FROM images', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
+// posting text data 
+app.post('/text', function (req, res) {
+let title = req.body.title;
+let contents = req.body.contents;
+if (!title) {
+return res.status(400).send({ error:true, message: 'Please provide title' });
+}
+dbConn.query("INSERT INTO data_text SET ? ", { title: title, contents:contents }, function (error, results, fields) {
+if (error) throw error;
+return res.send({ error: false, data: results, message: 'Text data is saved successfully.' });
+});
+});
+
+// delete a member
+app.delete('/member', function (req, res) {
+let id = req.body.id;
+if (!id) {
+return res.status(400).send({ error: true, message: 'Please provide id' });
+}
+dbConn.query('DELETE FROM member_table  WHERE id = ?', [id], function (error, results, fields) {
+if (error) throw error;
+return res.send({ error: false, data: results, message: 'User has been updated successfully.' });
+});
+});
+
+
+// posting img data 
+app.post('/img', function (req, res) {
+let img_title = req.body.img_title;
+let img_contents = req.body.img_contents;
+if (!img_title) {
+return res.status(400).send({ error:true, message: 'Please provide title' });
+}
+dbConn.query("INSERT INTO images SET ? ", { img_title: img_title, img_contents: img_contents }, function (error, results, fields) {
+if (error) throw error;
+return res.send({ error: false, data: results, message: 'Image data is saved successfully.' });
+});
+});
+
+
+
+app.listen(8000, function () {
+console.log('Node app is running on port 8000');
+});
+
+
+
+
+
 
 //  Update user with id
 //app.put('/user', function (req, res) {
@@ -62,32 +149,3 @@ return res.send({ error: false, data: results, message: 'New user has been creat
 //});
 //});
 
-//  Delete user
-app.delete('/member', function (req, res) {
-let id = req.body.id;
-if (!id) {
-return res.status(400).send({ error: true, message: 'Please provide id' });
-}
-dbConn.query('DELETE FROM member_table  WHERE id = ?', [id], function (error, results, fields) {
-if (error) throw error;
-return res.send({ error: false, data: results, message: 'User has been updated successfully.' });
-});
-});
-
-//testing for getting data
-app.get('/test_text', function (req, res) {
-	dbConn.query('SELECT contents FROM data_text WHERE id=1', function (error, results, fields) {
-if (error) throw error;
-return res.send(results);
-});
-});
-app.get('/test_img', function (req, res) {
-	dbConn.query('SELECT convert(img_contents USING utf8)FROM images WHERE id=1', function (error, results, fields) {
-if (error) throw error;
-return res.send(results);
-});
-});
-
-app.listen(8000, function () {
-console.log('Node app is running on port 8000');
-});
