@@ -17,7 +17,7 @@ app.get(["/", "/index.html"], (req, res) => {
 
 // connection configurations
 var dbConn = mysql.createConnection({
-host: '13.49.212.192',
+host: '13.49.31.59',
 user: 'kuser',
 password: 'sejhkweb',
 database: 'members'
@@ -78,19 +78,11 @@ return res.send(results);
 });
 
 
-// getting image data
-app.get('/img', function (req, res) {
-	dbConn.query('SELECT convert(img_contents USING utf8) FROM images', function (error, results, fields) {
-if (error) throw error;
-return res.send(results);
-});
-});
-
-// posting text data 
+// adding text data 
 app.post('/text', function (req, res) {
 let title = req.body.title;
 let contents = req.body.contents;
-if (!title) {
+if (!title) {y
 return res.status(400).send({ error:true, message: 'Please provide title' });
 }
 dbConn.query("INSERT INTO data_text SET ? ", { title: title, contents:contents }, function (error, results, fields) {
@@ -99,20 +91,40 @@ return res.send({ error: false, data: results, message: 'Text data is saved succ
 });
 });
 
-// delete a member
-app.delete('/member', function (req, res) {
+
+// delete text 
+app.delete('/text', function (req, res) {
 let id = req.body.id;
 if (!id) {
 return res.status(400).send({ error: true, message: 'Please provide id' });
 }
-dbConn.query('DELETE FROM member_table  WHERE id = ?', [id], function (error, results, fields) {
+dbConn.query('DELETE FROM data_text WHERE id = ?', [id], function (error, results, fields) {
 if (error) throw error;
-return res.send({ error: false, data: results, message: 'User has been updated successfully.' });
+return res.send({ error: false, data: results, message: 'Text data has been deleted successfully.' });
 });
 });
 
 
-// posting img data 
+
+// getting image data
+app.get('/img', function (req, res) {
+	dbConn.query('SELECT id, img_title, convert(img_contents USING utf8) FROM images', function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
+// getting image data by id
+app.get('/imgbyid', function (req, res) {
+let id = req.body.id;
+	dbConn.query('SELECT convert(img_contents USING utf8) FROM images WHERE id=?', [id], function (error, results, fields) {
+if (error) throw error;
+return res.send(results);
+});
+});
+
+
+// adding img data 
 app.post('/img', function (req, res) {
 let img_title = req.body.img_title;
 let img_contents = req.body.img_contents;
@@ -124,6 +136,19 @@ if (error) throw error;
 return res.send({ error: false, data: results, message: 'Image data is saved successfully.' });
 });
 });
+
+// delete an image
+app.delete('/img', function (req, res) {
+let id = req.body.id;
+if (!id) {
+return res.status(400).send({ error: true, message: 'Please provide id' });
+}
+dbConn.query('DELETE FROM images WHERE id = ?', [id], function (error, results, fields) {
+if (error) throw error;
+return res.send({ error: false, data: results, message: 'Text data has been deleted successfully.' });
+});
+});
+
 
 
 
