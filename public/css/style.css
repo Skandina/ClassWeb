@@ -124,8 +124,7 @@ nav #top-menu li a {
 
 #login,
 #signup {
-  min-width: 300px;
-  width: 30%;
+  width: 300px;
   height: 600px;
   border-radius: 20px;
   display: flex;
@@ -231,7 +230,7 @@ input[type="checkbox"] {
   font-size: 0.8em;
   text-align: left;
 }
-#signup .sns {
+/* #signup .sns {
   margin-top: 24px;
 }
 .sns-btns {
@@ -239,10 +238,16 @@ input[type="checkbox"] {
   justify-content: space-evenly;
 }
 .sns button.google-btn {
+  width: 100%;
   border-radius: 4px;
   border: none;
   padding: 4px 2px 2px 4px;
   background-color: #fff;
+}
+.sns button.google-btn span {
+  color: rgb(30, 29, 27);
+  font-size: 0.95em;
+  font-weight: 500;
 }
 .sns button svg {
   vertical-align: middle;
@@ -279,4 +284,4 @@ input[type="checkbox"] {
 }
 .sns h6:after {
   margin-left: 10px;
-}
+} */
