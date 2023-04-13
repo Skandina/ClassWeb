@@ -284,6 +284,7 @@ const ACTIVE_CLASSNAME = "active";
 
 const docFragment = new DocumentFragment();
 const cardHtml = document.querySelector("#card-box");
+const borderTop = document.querySelector(".border-top");
 
 const search = document.querySelector(".search");
 
@@ -301,7 +302,6 @@ if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
 
 function filterLevel(value) {
   let levelValue = contents.filter((x) => x.level === value);
-  console.log(levelValue);
   levelValue.map((content, index) => {
     let start = (currentPage - 1) * pageSize;
     let end = currentPage * pageSize;
@@ -387,6 +387,10 @@ function renderPagination(totalData, currentPage) {
 // tab 클릭 시 filter
 function handleTabClick(e) {
   currentPage = 1;
+  cardHtml.setAttribute("style", "display:flex !important");
+  pagination.style.display = "flex";
+  cardDetail.style.display = "none";
+
   //// 먼저 있던 active class 삭제하기
   for (let tab of tabs) {
     if (tab.classList.contains(ACTIVE_CLASSNAME)) {
@@ -428,6 +432,8 @@ function handleTabClick(e) {
 
 // card html 생성
 function createCard(content) {
+  borderTop.setAttribute("style", "display:none !important");
+
   const months = [
     "January",
     "February",
@@ -449,7 +455,7 @@ function createCard(content) {
 
   cardHtml.insertAdjacentHTML(
     "beforeend",
-    `<div class='card mb-3'><img class="card-img-top" src="img/${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
+    `<div class='card mb-3' onclick='showCardDetail(event)'><img class="card-img-top" src="img/${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
   );
 }
 
@@ -473,12 +479,13 @@ function searchCard(event) {
 }
 
 // card 클릭 시, contents detail show
-const cardItems = document.querySelectorAll(".card");
 const cardDetail = document.querySelector("#card-detail");
 function showCardDetail(event) {
   cardHtml.setAttribute("style", "display:none !important");
+  borderTop.setAttribute("style", "display:block !important");
   pagination.style.display = "none";
   cardDetail.style.display = "block";
+
   // 클릭한 card 내용 채우기
   if (event.target.className === "card-img-top") {
     // title
@@ -515,4 +522,3 @@ function showCardDetail(event) {
     cardDetail.children[3].innerText = event.target.children[1].innerText;
   }
 }
-cardItems.forEach((e) => e.addEventListener("click", showCardDetail));
