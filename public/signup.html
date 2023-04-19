@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="wrap">
+    <form id="form" class="wrap">
       <header>
         <div id="gnb">
           <h1><a class="link-home" href="index.html">Hejhejkorean</a></h1>
@@ -33,7 +33,7 @@
           <input
             onChange="validateName(); activeSignupBtn();"
             type="text"
-            name="name"
+            name="username"
             placeholder="Enter your name"
           />
         </div>
@@ -51,7 +51,7 @@
           <input
             onChange="validatePassword(); activeSignupBtn();"
             type="password"
-            name=""
+            name="pw"
             placeholder="Enter password"
           />
         </div>
@@ -60,18 +60,18 @@
           <input
             onChange="confirmPassword(); activeSignupBtn();"
             type="password"
-            name=""
+            name="pw_confirm"
             placeholder="Enter password"
           />
         </div>
-        <div class="checkbox agreement">
+        <!-- <div class="checkbox agreement">
           <input type="checkbox" name="" /> I agree to the terms and conditions
-        </div>
+        </div> -->
         <div class="submit">
           <input disabled type="submit" value="Sign up" />
         </div>
       </div>
-    </div>
+    </form>
     <!-- JavaScript Bundle with Popper -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
@@ -79,8 +79,6 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="../js/nav.js"></script>
-    <script src="../js/login.js"></script>
     <script src="../js/signup.js"></script>
   </body>
 </html>
