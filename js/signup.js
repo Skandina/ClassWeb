@@ -9,6 +9,7 @@ const pwInput = pw.querySelector("#signup-pw input");
 const rePw = document.querySelector("#confirm-pw");
 const rePwInput = rePw.querySelector("#confirm-pw input");
 let signUpBtn = document.querySelector(".submit input");
+const form = document.getElementById("form");
 
 // validate name
 function validateName() {
@@ -145,13 +146,34 @@ function activeSignupBtn() {
   ) {
     signUpBtn.disabled = false;
   } else {
-    console.log("disabled");
     signUpBtn.disabled = true;
   }
 }
 
-function signupHandle(event) {
-  event.preventDefault();
-}
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(form);
+  const payload = new URLSearchParams(formData);
 
-signUpBtn.addEventListener("click", signupHandle);
+  fetch("http://localhost:8000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: payload,
+  })
+    .then((res) => {
+      if (res.ok) {
+        res.json();
+        alert("Sign up succeeded.");
+        window.location = "login.html";
+      } else {
+        alert("Sign up failed.");
+        throw new Error("Invalid credentials");
+      }
+    })
+    .then((data) => console.log(data))
+    .catch((error) => {
+      console.log(error);
+    });
+});
