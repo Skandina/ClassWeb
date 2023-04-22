@@ -33,6 +33,28 @@ return res.send({ error: false, data: results, message: 'members list.' });
 });
 });
 
+// login process 
+app.post('/login_process', function (req, res) {
+	let email = req.body.email;
+	let pw = req.body.pw;
+	if (email && pw) {
+		dbConn.query("SELECT * FROM member_table WHERE email = ? AND pw = ?", [email, pw], function(error, results, fields) { 
+	   if (error) throw error;
+	   if (results.length > 0) {
+//		   req.session.is_logined = true;
+//		   req.session.nickname = username;
+//		   req.session.save(function () {
+		   res.send({results, message: 'you are loginned'});
+//		   });
+	   } else { 
+		   res.send({error:false, data: results, message: 'Login information is not correct'});
+           }
+	  });
+	} else {
+		res.send({error:false,  message: 'Please insert username and password'});
+	}
+});
+		
 // add a member
 app.post('/signup', function (req, res) {
 let username = req.body.username;
