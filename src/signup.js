@@ -150,6 +150,7 @@ function activeSignupBtn() {
   }
 }
 
+// submit signup form
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div class="wrap">
+    <form id="form" class="wrap">
       <header>
         <div id="gnb">
           <h1><a class="link-home" href="index.html">Hejhejkorean</a></h1>
@@ -31,15 +31,15 @@
         <div id="google-login"></div>
         <div id="login-id">
           <label>E-mail</label>
-          <input type="email" name="" placeholder="Email" />
+          <input type="email" name="email" placeholder="Email" />
         </div>
         <div id="login-pw">
           <label>Password</label>
-          <input type="password" name="" placeholder="Password" />
+          <input type="password" name="pw" placeholder="Password" />
         </div>
         <div id="login-etc">
           <div class="checkbox">
-            <input type="checkbox" name="" /> Remember me
+            <input type="checkbox" name="" /> Remember email
           </div>
           <div>
             <a href="#">Forgot password?</a> |
@@ -50,7 +50,7 @@
           <input type="submit" value="Login" />
         </div>
       </div>
-    </div>
+    </form>
 
     <!-- JavaScript Bundle with Popper -->
     <script
@@ -61,8 +61,6 @@
     <!-- Google login -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <script src="../js/nav.js"></script>
-    <script src="../js/login.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="../src/login.js"></script>
   </body>
 </html>
