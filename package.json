@@ -8,5 +8,30 @@
     "mysql2": "^3.2.0",
     "passport": "^0.6.0",
     "passport-kakao": "^1.0.1"
-  }
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "babel src -d dist"
+  },
+  "name": "koreanwebsite",
+  "version": "1.0.0",
+  "main": "auth.js",
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.4",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.21.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skandina/KoreanWebsite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skandina/KoreanWebsite/issues"
+  },
+  "homepage": "https://github.com/Skandina/KoreanWebsite#readme",
+  "description": ""
 }
