@@ -256,7 +256,6 @@ app.post("/login_process", async function (req, res) {
 // logout
 app.get("/logout", (req, res) => {
   isLogin = false;
-  console.log(res.cookie);
   res.clearCookie("accessToken", {
     domain: "localhost",
     path: "/",
@@ -264,7 +263,7 @@ app.get("/logout", (req, res) => {
     secure: true,
     overwrite: true,
   });
-  // return res.redirect("/");
+  res.end();
 });
 
 // add a member

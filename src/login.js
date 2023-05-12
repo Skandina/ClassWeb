@@ -3,15 +3,6 @@
 let email = "";
 let username = "";
 
-// // logout
-// function deleteToken() {
-//   fetch("http://localhost:8000/logout");
-//   // if (res.ok) {
-//   //   alert("Please log in.");
-//   //   window.location = "login";
-//   // }
-// }
-
 const getUserInfo = async function () {
   const res = await fetch("http://localhost:8000/member");
   // console.log("userinfo res", res);
@@ -98,7 +89,7 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   const payload = new URLSearchParams(formData);
-  console.log(payload);
+
   fetch("http://localhost:8000/login_process", {
     method: "POST",
     headers: {
