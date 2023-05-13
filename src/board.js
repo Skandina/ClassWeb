@@ -455,7 +455,7 @@ function createCard(content) {
 
   cardHtml.insertAdjacentHTML(
     "beforeend",
-    `<div class='card mb-3' onclick='showCardDetail(event)'><img class="card-img-top" src="img/${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
+    `<div class='card mb-3' onclick='showCardDetail(event)'><img class="card-img-top" src="/public/img/${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
   );
 }
 
