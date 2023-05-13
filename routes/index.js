@@ -12,4 +12,8 @@ router.get("/board", (req, res) => {
   res.render("board");
 });
 
+router.get("/post", (req, res) => {
+  res.render("post");
+});
+
 module.exports = router;
