@@ -3,6 +3,7 @@
   <%- include('common/head') %>
   <body>
     <%- include('common/header') %>
+    <h2 class="page-title">Write a post</h2>
     <div class="container p-4">
       <form class="p-4 border rounded">
         <div class="mb-3">
@@ -28,7 +29,7 @@
           <input class="form-control" type="file" id="postImage" multiple />
         </div>
         <div class="submit">
-          <input type="submit" value="Post" />
+          <input type="submit" value="Post" style="color: white" />
         </div>
       </form>
     </div>
@@ -42,6 +43,6 @@
 
     <script src="../src/nav.js"></script>
     <script type="module" src="../src/logout.js"></script>
-    <script src="../src/board.js"></script>
+    <script src="../src/post.js"></script>
   </body>
 </html>
