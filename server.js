@@ -335,7 +335,9 @@ app.get("/textbyid", function (req, res) {
 // adding text data
 app.post("/text", function (req, res) {
   let title = req.body.title;
+  let student_level = req.body.student_level;
   let contents = req.body.contents;
+//let published_date
   if (!title) {
     y;
     return res
@@ -344,7 +346,7 @@ app.post("/text", function (req, res) {
   }
   dbConn.query(
     "INSERT INTO data_text SET ? ",
-    { title: title, contents: contents },
+    { title: title, student_level: student_level, contents: contents },
     function (error, results, fields) {
       if (error) throw error;
       return res.send({
@@ -355,6 +357,7 @@ app.post("/text", function (req, res) {
     }
   );
 });
+
 
 // delete text
 app.delete("/text", function (req, res) {
