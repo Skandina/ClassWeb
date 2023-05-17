@@ -1,279 +1,35 @@
 `use strict`;
 
-const contents = [
-  {
-    level: "Beginner",
-    title: "Korean food recipe",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe2",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe3",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe4",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe5",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe6",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe7",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe8",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe9",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe10",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe11",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe12",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe13",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe14",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe15",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe16",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe17",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe18",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe19",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe20",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe21",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe22",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe23",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe24",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe25",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe26",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe27",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe28",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe29",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe30",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Advanced",
-    title: "recipe31",
-    date: "2023-05-20",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe32",
-    date: "2023-06-15",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Beginner",
-    title: "recipe33",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-  {
-    level: "Intermediate",
-    title: "recipe34",
-    date: "2023-03-06",
-    image: "bibimbap.jpg",
-    detail:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-  },
-];
+let contents = [];
+const getText = async function () {
+  // const res = await fetch("http://localhost:8000/text");
+  // const resJson = res.json();
+  // if (res.ok) {
+  //   console.log("get text ok", resJson);
+  // }
+  await fetch("http://localhost:8000/text")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      contents = data.map((text) => {
+        const title = text.title;
+        const detail = text.contents;
+        const level = "everything";
+        const date = new Date();
+        const image = "newtokki.jpg";
+        return {
+          title: title,
+          detail: detail,
+          level: level,
+          date: date,
+          image: image,
+        };
+      });
+    })
+    .catch((err) => alert(err));
+};
+getText();
 
 const tabs = document.querySelectorAll("a.nav-link");
 const tabAll = document.querySelector(".tab-all");
@@ -295,10 +51,12 @@ const pagination = document.querySelector(".container>nav");
 let pageSize = 5;
 let currentPage = 1;
 
-if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
-  renderContents(contents, currentPage);
-  renderPagination(contents.length, currentPage);
-}
+setTimeout(() => {
+  if (tabAll.classList.contains(ACTIVE_CLASSNAME)) {
+    renderContents(contents, currentPage);
+    renderPagination(contents.length, currentPage);
+  }
+}, 400);
 
 function filterLevel(value) {
   let levelValue = contents.filter((x) => x.level === value);
