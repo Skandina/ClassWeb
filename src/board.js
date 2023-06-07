@@ -15,9 +15,9 @@ const getText = async function () {
       contents = data.map((text) => {
         const title = text.title;
         const detail = text.contents;
-        const level = "everything";
-        const date = new Date();
-        const image = "newtokki.jpg";
+        const level = text.student_level;
+        const date = text.published_date;
+        const image = `/home/ubuntu/kweb/KoreanWebsite/public/img/${text.img_name}`;
         return {
           title: title,
           detail: detail,
@@ -213,7 +213,7 @@ function createCard(content) {
 
   cardHtml.insertAdjacentHTML(
     "beforeend",
-    `<div class='card mb-3' onclick='showCardDetail(event)'><img class="card-img-top" src="/public/img/${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
+    `<div class='card mb-3' onclick='showCardDetail(event)'><img class="card-img-top" src="${content.image}"><div class="card-body"><h5 class="card-title">${content.title}</h5><p class="card-text">${content.detail}</p><p class="card-text date">${month} ${date}, ${year}</p></div></div>`
   );
 }
 

@@ -62,6 +62,17 @@ app.get("/member", function (req, res) {
     return res.send({ error: false, data: results, message: "members list." });
   });
 });
+// get all glogin_members
+app.get("/member/glogin", function (req, res) {
+  dbConn.query("SELECT * FROM glogin_table", function (error, results, fields) {
+    if (error) throw error;
+    return res.send({
+      error: false,
+      data: results,
+      message: "glogin_members list.",
+    });
+  });
+});
 
 // verify accessToken
 app.get("/auth/token", auth, (req, res) => {
@@ -81,13 +92,10 @@ app.get("/auth/token", auth, (req, res) => {
 app.post("/glogin", function (req, res) {
   let username = req.body.username;
   let email = req.body.email;
-  let pw = req.body.pw;
-  let pw_confirm = req.body.pw_confirm;
 
-  console.log("req.body", req.body);
   if (email && username) {
     dbConn.query(
-      "SELECT * FROM member_table WHERE email = ? AND username = ?",
+      "SELECT * FROM glogin_table WHERE email = ? AND username = ?",
       [email, username],
       async function (error, results, fields) {
         const accessToken = await new Promise((resolve, reject) => {
@@ -109,11 +117,12 @@ app.post("/glogin", function (req, res) {
         });
         if (error) throw error;
         if (results.length > 0) {
+          console.log("results", results);
           try {
-            res.cookie("google_email", email, {
-              expires: new Date(Date.now() + 900000),
-              httpOnly: true,
-            });
+            // res.cookie("google_email", email, {
+            //   expires: new Date(Date.now() + 900000),
+            //   httpOnly: true,
+            // });
             res.cookie("accessToken", accessToken, {
               domain: "localhost",
               path: "/",
@@ -132,19 +141,17 @@ app.post("/glogin", function (req, res) {
           }
         } else {
           dbConn.query(
-            "INSERT INTO member_table SET ? ",
+            "INSERT INTO glogin_table SET ? ",
             {
               username: username,
-              pw: pw,
-              pw_confirm: pw_confirm,
               email: email,
             },
             async function (error, results, fields) {
               if (error) throw error;
-              res.cookie("google_email", email, {
-                expires: new Date(Date.now() + 900000),
-                httpOnly: true,
-              });
+              // res.cookie("google_email", email, {
+              //   expires: new Date(Date.now() + 900000),
+              //   httpOnly: true,
+              // });
               res.cookie("accessToken", accessToken, {
                 domain: "localhost",
                 path: "/",
@@ -157,11 +164,6 @@ app.post("/glogin", function (req, res) {
                 success: true,
                 accessToken: accessToken,
               });
-              // res.send({
-              //   error: false,
-              //   data: results,
-              //   message: "New google account memeber created",
-              // });
             }
           );
         }
@@ -209,10 +211,6 @@ app.post("/login_process", async function (req, res) {
                 }
               );
             });
-            // res.cookie("email", email, {
-            //   expires: 1,
-            //   httpOnly: true,
-            // });
             res.cookie("accessToken", accessToken, {
               domain: "localhost",
               path: "/",
@@ -337,27 +335,33 @@ app.post("/text", function (req, res) {
   let title = req.body.title;
   let student_level = req.body.student_level;
   let contents = req.body.contents;
-//let published_date
+  let img_name = req.body.img_name;
+  //let published_date
   if (!title) {
-    y;
+    // y;
     return res
       .status(400)
       .send({ error: true, message: "Please provide title" });
   }
   dbConn.query(
     "INSERT INTO data_text SET ? ",
-    { title: title, student_level: student_level, contents: contents },
+    {
+      title: title,
+      student_level: student_level,
+      contents: contents,
+      img_name: img_name,
+    },
     function (error, results, fields) {
       if (error) throw error;
-      return res.send({
-        error: false,
+      return res.status(200).json({
+        code: 200,
+        success: true,
         data: results,
         message: "Text data is saved successfully.",
       });
     }
   );
 });
-
 
 // delete text
 app.delete("/text", function (req, res) {
