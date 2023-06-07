@@ -13,7 +13,6 @@ const getAuth = async function (accessToken) {
     method: "GET",
     headers: { Authorization: accessToken },
   });
-
   if (res.ok) {
     getUserInfo();
     alert("You are logged in.");
@@ -43,13 +42,13 @@ function handleCredentialResponse(response) {
       username: username,
     }),
   })
-    .then((res) => {
-      res.json();
-    })
+    .then((res) => res.json())
     .then((result) => {
       if (result.code === 200) {
         // 토큰 검증
         getAuth(result.accessToken);
+      } else {
+        alert("Please check your login information.");
       }
     })
     .catch((err) => console.error("error::", err));
@@ -99,7 +98,6 @@ form.addEventListener("submit", (e) => {
   })
     .then((res) => res.json())
     .then((result) => {
-      console.log(result);
       if (result.code === 200) {
         // 토큰 검증
         getAuth(result.accessToken);

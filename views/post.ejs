@@ -5,28 +5,50 @@
     <%- include('common/header') %>
     <h2 class="page-title">Write a post</h2>
     <div class="container p-4">
-      <form class="p-4 border rounded">
+      <form id="form" class="p-4 border rounded">
         <div class="mb-3">
-          <label for="postTitle" class="form-label">Title</label>
+          <label for="title" class="form-label">Title</label>
           <input
             type="text"
+            name="title"
             class="form-control"
-            id="postTitle"
+            id="title"
             placeholder="Please enter the title"
           />
         </div>
         <div class="mb-3">
-          <label for="postText" class="form-label">Text</label>
+          <label for="student_level" class="form-label">Level</label>
+          <select
+            name="student_level"
+            id="student_level"
+            class="form-select"
+            aria-label="Select level"
+          >
+            <option selected>Select level</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label for="contents" class="form-label">Text</label>
           <textarea
+            name="contents"
             class="form-control"
-            id="postText"
+            id="contents"
             rows="5"
             placeholder="Please enter the text"
           ></textarea>
         </div>
         <div class="mb-3">
-          <label for="postImage" class="form-label">Imgaes</label>
-          <input class="form-control" type="file" id="postImage" multiple />
+          <label for="img_name" class="form-label">Imgaes</label>
+          <input
+            id="img_name"
+            class="form-control"
+            type="file"
+            id="postImage"
+            multiple
+          />
         </div>
         <div class="submit">
           <input type="submit" value="Post" style="color: white" />
