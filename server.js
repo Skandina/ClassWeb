@@ -1,3 +1,5 @@
+#!/usr/bin/node
+
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -30,7 +32,7 @@ app.use("/", routes);
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
-  const cookies = req.headers.cookie.split("; ");
+  const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
     .map((cookie) => cookie.split("=")[1]);

@@ -4,12 +4,12 @@ let email = "";
 let username = "";
 
 const getUserInfo = async function () {
-  const res = await fetch("http://localhost:8000/member");
+  const res = await fetch("http://13.49.31.59:8000/member");
   // console.log("userinfo res", res);
 };
 
 const getAuth = async function (accessToken) {
-  const res = await fetch("http://localhost:8000/auth/token", {
+  const res = await fetch("http://13.49.31.59:8000/auth/token", {
     method: "GET",
     headers: { Authorization: accessToken },
   });
@@ -32,7 +32,7 @@ function handleCredentialResponse(response) {
   email = responsePayload.email;
   username = responsePayload.name;
 
-  fetch("http://localhost:8000/glogin", {
+  fetch("http://13.49.31.59:8000/glogin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -89,7 +89,7 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData(form);
   const payload = new URLSearchParams(formData);
 
-  fetch("http://localhost:8000/login_process", {
+  fetch("http://13.49.31.59:8000/login_process", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
