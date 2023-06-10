@@ -156,7 +156,7 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData(form);
   const payload = new URLSearchParams(formData);
 
-  fetch("http://localhost:8000/signup", {
+  fetch("http://13.49.31.59:8000/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",

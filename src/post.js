@@ -6,11 +6,11 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   const formData = new FormData(form);
   const imgName = document.getElementById("img_name");
-  const imgNameValue = imgName.value.split("\\")[2];
+  const imgNameValue = (imgName.value || "").split("\\")[2];
   formData.append("img_name", imgNameValue);
   const payload = new URLSearchParams(formData);
 
-  fetch("http://localhost:8000/text", {
+  fetch("http://13.49.31.59:8000/text", {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
