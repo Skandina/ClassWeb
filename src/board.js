@@ -2,12 +2,7 @@
 
 let contents = [];
 const getText = async function () {
-  // const res = await fetch("http://localhost:8000/text");
-  // const resJson = res.json();
-  // if (res.ok) {
-  //   console.log("get text ok", resJson);
-  // }
-  await fetch("http://localhost:8000/text")
+  await fetch("http://13.49.31.59:8000/text")
     .then((res) => {
       return res.json();
     })

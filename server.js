@@ -126,7 +126,7 @@ app.post("/glogin", function (req, res) {
             //   httpOnly: true,
             // });
             res.cookie("accessToken", accessToken, {
-              domain: "localhost",
+              domain: "13.49.31.59",
               path: "/",
               httpOnly: true,
               secure: true,
@@ -155,7 +155,7 @@ app.post("/glogin", function (req, res) {
               //   httpOnly: true,
               // });
               res.cookie("accessToken", accessToken, {
-                domain: "localhost",
+                domain: "13.49.31.59",
                 path: "/",
                 httpOnly: true,
                 secure: true,
@@ -214,7 +214,7 @@ app.post("/login_process", async function (req, res) {
               );
             });
             res.cookie("accessToken", accessToken, {
-              domain: "localhost",
+              domain: "13.49.31.59",
               path: "/",
               httpOnly: true,
               secure: true,
@@ -257,7 +257,7 @@ app.post("/login_process", async function (req, res) {
 app.get("/logout", (req, res) => {
   isLogin = false;
   res.clearCookie("accessToken", {
-    domain: "localhost",
+    domain: "13.49.31.59",
     path: "/",
     httpOnly: true,
     secure: true,
