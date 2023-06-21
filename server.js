@@ -34,7 +34,6 @@ let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
   console.log("req: ", req);
   console.log("Cookies: ", req.cookies);
-  alert("1111111");
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
@@ -45,11 +44,9 @@ app.get(["/", "/index"], (req, res) => {
     // isLogin = false;
     console.log("req(if): ", req);
     console.log("Cookies(if): ", req.cookies);
-    alert("2222222");
     res.render("login", { isLogin: isLogin });
   } else {
     isLogin = true;
-    alert("333333");
     res.render("index", { username: username, isLogin: isLogin });
   }
 });
@@ -135,8 +132,8 @@ app.post("/glogin", function (req, res) {
             res.cookie("accessToken", accessToken, {
               domain: "13.49.31.59",
               path: "/",
-              httpOnly: true,
-              secure: true,
+              // httpOnly: true,
+              // secure: true,
             });
             res.status(200).json({
               code: 200,
@@ -164,8 +161,8 @@ app.post("/glogin", function (req, res) {
               res.cookie("accessToken", accessToken, {
                 domain: "13.49.31.59",
                 path: "/",
-                httpOnly: true,
-                secure: true,
+                // httpOnly: true,
+                // secure: true,
                 overwrite: true,
               });
               res.status(200).json({
@@ -223,8 +220,8 @@ app.post("/login_process", async function (req, res) {
             res.cookie("accessToken", accessToken, {
               domain: "13.49.31.59",
               path: "/",
-              httpOnly: true,
-              secure: true,
+              // httpOnly: true,
+              // secure: true,
               overwrite: true,
             });
             res.status(200).json({
@@ -266,8 +263,8 @@ app.get("/logout", (req, res) => {
   res.clearCookie("accessToken", {
     domain: "13.49.31.59",
     path: "/",
-    httpOnly: true,
-    secure: true,
+    // httpOnly: true,
+    // secure: true,
     overwrite: true,
   });
   res.end();
