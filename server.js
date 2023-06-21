@@ -32,6 +32,9 @@ app.use("/", routes);
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
+  console.log("req: ", req);
+  console.log("Cookies: ", req.cookies);
+  alert("1111111");
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
@@ -40,9 +43,13 @@ app.get(["/", "/index"], (req, res) => {
   // console.log(username);
   if (access_Token.length === 0) {
     // isLogin = false;
+    console.log("req(if): ", req);
+    console.log("Cookies(if): ", req.cookies);
+    alert("2222222");
     res.render("login", { isLogin: isLogin });
   } else {
     isLogin = true;
+    alert("333333");
     res.render("index", { username: username, isLogin: isLogin });
   }
 });
