@@ -12,7 +12,7 @@ const getText = async function () {
         const detail = text.contents;
         const level = text.student_level;
         const date = text.published_date;
-        const image = `/home/ubuntu/kweb/KoreanWebsite/public/img/${text.img_name}`;
+        const image = `public/img/${text.img_name}`;
         return {
           title: title,
           detail: detail,
