@@ -91,6 +91,7 @@ form.addEventListener("submit", (e) => {
 
   fetch("http://13.49.31.59:8000/login_process", {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
     },
