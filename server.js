@@ -6,6 +6,7 @@ var bodyParser = require("body-parser");
 var mysql = require("mysql");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
+const cors = require("cors");
 
 // Json Web Token
 const jwt = require("jsonwebtoken");
@@ -29,6 +30,7 @@ app.use("/src", express.static(__dirname + "/src"));
 app.use("/public", express.static(__dirname + "/public"));
 
 app.use("/", routes);
+app.use(cors({ origin: "http://13.49.31.59", credentials: true }));
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
@@ -125,15 +127,16 @@ app.post("/glogin", function (req, res) {
         if (results.length > 0) {
           console.log("results", results);
           try {
-            // res.cookie("google_email", email, {
-            //   expires: new Date(Date.now() + 900000),
-            //   httpOnly: true,
-            // });
+            res.cookie("google_email", email, {
+              expires: new Date(Date.now() + 900000),
+              httpOnly: true,
+            });
             res.cookie("accessToken", accessToken, {
               domain: "13.49.31.59",
               path: "/",
-              // httpOnly: true,
-              // secure: true,
+              httpOnly: true,
+              secure: true,
+              sameSite: "none",
             });
             res.status(200).json({
               code: 200,
@@ -154,15 +157,16 @@ app.post("/glogin", function (req, res) {
             },
             async function (error, results, fields) {
               if (error) throw error;
-              // res.cookie("google_email", email, {
-              //   expires: new Date(Date.now() + 900000),
-              //   httpOnly: true,
-              // });
+              res.cookie("google_email", email, {
+                expires: new Date(Date.now() + 900000),
+                httpOnly: true,
+              });
               res.cookie("accessToken", accessToken, {
                 domain: "13.49.31.59",
                 path: "/",
-                // httpOnly: true,
-                // secure: true,
+                httpOnly: true,
+                secure: true,
+                sameSite: "none",
                 overwrite: true,
               });
               res.status(200).json({
@@ -220,8 +224,9 @@ app.post("/login_process", async function (req, res) {
             res.cookie("accessToken", accessToken, {
               domain: "13.49.31.59",
               path: "/",
-              // httpOnly: true,
-              // secure: true,
+              httpOnly: true,
+              secure: true,
+              sameSite: "none",
               overwrite: true,
             });
             res.status(200).json({
@@ -263,8 +268,9 @@ app.get("/logout", (req, res) => {
   res.clearCookie("accessToken", {
     domain: "13.49.31.59",
     path: "/",
-    // httpOnly: true,
-    // secure: true,
+    httpOnly: true,
+    secure: true,
+    sameSite: "none",
     overwrite: true,
   });
   res.end();
