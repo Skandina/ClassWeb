@@ -1,12 +1,12 @@
 /* Tab menu */
 .nav-link,
 .nav-link.disabled {
-  color: rgba(66, 105, 110, 0.9);
+  color: rgba(8, 60, 90, 0.9);
 }
 .nav-link.active,
 .nav-link:focus,
 .nav-link:hover {
-  color: rgba(82, 179, 185, 1);
+  color: rgb(0, 106, 167);
 }
 
 /* Search */
