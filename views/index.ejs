@@ -3,46 +3,19 @@
   <%- include('common/head') %>
   <body>
     <div class="">
+      <% if(isLogin){ %> <%- include('common/header') %> <% } else { %>
       <header>
         <div id="gnb">
-          <h1><a href="/">Hejhejkorean</a></h1>
-          <% if(isLogin){ %>
-          <nav>
-            <ul id="menu-list">
-              <li class="menu">
-                <a href="#">About</a>
-              </li>
-              <li class="menu">
-                <a href="board">Bulletin Board</a>
-              </li>
-              <li class="menu">
-                <a href="#">Let's Quiz</a>
-              </li>
-            </ul>
-            <ul id="top-menu">
-              <li><a href="#">KOR▼</a></li>
-              <li id="log-btn">
-                <a id="logout-btn" href="#">Logout</a>
-              </li>
-            </ul>
-          </nav>
-          <span class="toggleBtn">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <% } else { %>
           <nav>
             <ul id="top-menu">
               <li><a href="#">KOR▼</a></li>
               <li id="log-btn"><a href="login">Login</a></li>
-              <li><a href="signup">Sign up</a></li>
+              <li id="signup-btn"><a href="signup">Sign up</a></li>
             </ul>
           </nav>
-          <% } %>
         </div>
       </header>
-      <div class="mv"></div>
+      <% } %> <%- include('mv') %>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
