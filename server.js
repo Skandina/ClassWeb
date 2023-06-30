@@ -8,6 +8,10 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
+app.listen(8000, function () {
+	console.log("Node app is running on port 8000");
+});
+
 // Json Web Token
 const jwt = require("jsonwebtoken");
 const { auth } = require("./routes/auth.js");
@@ -55,13 +59,17 @@ app.get(["/", "/index"], (req, res) => {
 
 // connection configurations
 var dbConn = mysql.createConnection({
+  connectTimeout : 100000,
   host: "13.49.31.59",
   user: "kuser",
   password: "sejhkweb",
-  database: "members",
+  database: "kweb",
+  port: 13306
 });
 
-dbConn.connect();
+dbConn.connect(function(err) {
+	console.log("[mysql error]", err);
+});
 
 // get all members
 app.get("/member", function (req, res) {
@@ -72,7 +80,7 @@ app.get("/member", function (req, res) {
 });
 // get all glogin_members
 app.get("/member/glogin", function (req, res) {
-  dbConn.query("SELECT * FROM glogin_table", function (error, results, fields) {
+	  dbConn.query("SELECT * FROM glogin_table", function (error, results, fields) {
     if (error) throw error;
     return res.send({
       error: false,
@@ -287,8 +295,7 @@ app.post("/signup", function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide user" });
   }
-  dbConn.query(
-    "INSERT INTO member_table SET ? ",
+  dbConn.query("INSERT INTO member_table SET ? ",
     { username: username, pw: pw, pw_confirm: pw_confirm, email: email },
     function (error, results, fields) {
       if (error) throw error;
@@ -395,86 +402,3 @@ app.delete("/text", function (req, res) {
   );
 });
 
-// getting image data
-app.get("/img", function (req, res) {
-  dbConn.query(
-    "SELECT id, img_title, convert(img_contents USING utf8) FROM images",
-    function (error, results, fields) {
-      if (error) throw error;
-      return res.send(results);
-    }
-  );
-});
-
-// getting image data by id
-app.get("/imgbyid", function (req, res) {
-  let id = req.body.id;
-  dbConn.query(
-    "SELECT convert(img_contents USING utf8) FROM images WHERE id=?",
-    [id],
-    function (error, results, fields) {
-      if (error) throw error;
-      return res.send(results);
-    }
-  );
-});
-
-// adding img data
-app.post("/img", function (req, res) {
-  let img_title = req.body.img_title;
-  let img_contents = req.body.img_contents;
-  if (!img_title) {
-    return res
-      .status(400)
-      .send({ error: true, message: "Please provide title" });
-  }
-  dbConn.query(
-    "INSERT INTO images SET ? ",
-    { img_title: img_title, img_contents: img_contents },
-    function (error, results, fields) {
-      if (error) throw error;
-      return res.send({
-        error: false,
-        data: results,
-        message: "Image data is saved successfully.",
-      });
-    }
-  );
-});
-
-// delete an image
-app.delete("/img", function (req, res) {
-  let id = req.body.id;
-  if (!id) {
-    return res.status(400).send({ error: true, message: "Please provide id" });
-  }
-  dbConn.query(
-    "DELETE FROM images WHERE id = ?",
-    [id],
-    function (error, results, fields) {
-      if (error) throw error;
-      return res.send({
-        error: false,
-        data: results,
-        message: "Text data has been deleted successfully.",
-      });
-    }
-  );
-});
-
-app.listen(8000, function () {
-  console.log("Node app is running on port 8000");
-});
-
-//  Update user with id
-//app.put('/user', function (req, res) {
-//let user_id = req.body.user_id;
-//let user = req.body.user;
-//if (!user_id || !user) {
-//return res.status(400).send({ error: user, message: 'Please provide user and user_id' });
-//}
-//dbConn.query("UPDATE users SET user = ? WHERE id = ?", [user, user_id], function (error, results, fields) {
-//if (error) throw error;
-//return res.send({ error: false, data: results, message: 'user has been updated successfully.' });
-//});
-//});
