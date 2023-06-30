@@ -1,5 +1,6 @@
 #!/usr/bin/node
 
+const { dbConn } = require('./mysql_config'); 
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -8,10 +9,42 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
+<<<<<<< Updated upstream
+=======
+/* Monitoring logs 
+const AWS = require('aws-sdk');
+AWS.config.update({ region: 'eu-north-1' });
+console.log("This is before the function has been created");
+console.log = function(message) {
+	const cloudwatchlogs = new AWS.CloudWatchLogs();
+	const params = {
+		logGroupName: 'test.log',
+		logStreamName: 'test.log',
+		logEvents: [
+			{
+				message: message,
+				timestamp: new Date().getTime()
+			}
+		]
+	};
+
+	cloudwatchlogs.putLogEvents(params, function(err, data) {
+		if (err) console.error(err, err.stack);
+//		else console.log('Logged to cloudWatch Logs');
+	});
+
+};
+*/
+
+>>>>>>> Stashed changes
 app.listen(8000, function () {
 	console.log("Node app is running on port 8000");
 });
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 // Json Web Token
 const jwt = require("jsonwebtoken");
 const { auth } = require("./routes/auth.js");
@@ -57,6 +90,7 @@ app.get(["/", "/index"], (req, res) => {
   }
 });
 
+<<<<<<< Updated upstream
 // connection configurations
 var dbConn = mysql.createConnection({
   connectTimeout : 100000,
@@ -71,6 +105,13 @@ dbConn.connect(function(err) {
 	console.log("[mysql error]", err);
 });
 
+=======
+// connecting to the database 
+dbConn.connect(function(err) {
+	console.log("[mysql error]", err);
+});
+
+>>>>>>> Stashed changes
 // get all members
 app.get("/member", function (req, res) {
   dbConn.query("SELECT * FROM member_table", function (error, results, fields) {
