@@ -87,7 +87,7 @@ dbConn.connect(function(err) {
 	console.log("[mysql error]", err);
 });
 
-/ get all members
+//get all members
 app.get("/member", function (req, res) {
   dbConn.query("SELECT * FROM member_table", function (error, results, fields) {
     if (error) throw error;
