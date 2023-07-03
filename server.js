@@ -60,12 +60,12 @@ app.use("/src", express.static(__dirname + "/src"));
 app.use("/public", express.static(__dirname + "/public"));
 
 app.use("/", routes);
-app.use(cors({ origin: "http://13.49.31.59:8000", credentials: true }));
+app.use(cors({ origin: true, credentials: true }));
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
-  console.log("req: ", req);
-  console.log("Cookies: ", req.cookies);
+  console.log("req: -----------------------------------------------------------", req);
+  console.log("Cookies: ----------------------------------------------------", req.cookies);
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
@@ -156,7 +156,7 @@ app.post("/glogin", function (req, res) {
               httpOnly: true,
             });
             res.cookie("accessToken", accessToken, {
-              domain: "13.49.31.59",
+	      domain: "13.49.31.59",
               path: "/",
               httpOnly: true,
               secure: true,
@@ -245,14 +245,17 @@ app.post("/login_process", async function (req, res) {
                 }
               );
             });
-            res.cookie("accessToken", accessToken, {
-              domain: "13.49.31.59",
-              path: "/",
-              httpOnly: true,
-              secure: true,
-              sameSite: "none",
-              overwrite: true,
-            });
+            res.cookie("accessToken", accessToken);
+//	      domain: "13.49.31.59:8000",
+//             path: "/login_process",
+//            httpOnly: true,
+//            secure: true,
+//            sameSite: "none",
+//            overwrite: true,
+//          });
+	    console.log("======================TOKEN=================================");
+	    console.log(accessToken);
+	    console.log("COOKIES :", req.cookies);
             res.status(200).json({
               code: 200,
               success: true,
