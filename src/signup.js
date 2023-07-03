@@ -167,7 +167,7 @@ form.addEventListener("submit", (e) => {
       if (res.ok) {
         res.json();
         alert("Sign up succeeded.");
-        window.location = "login.html";
+        window.location = "login";
       } else {
         alert("Sign up failed.");
         throw new Error("Invalid credentials");

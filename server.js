@@ -1,6 +1,6 @@
 #!/usr/bin/node
 
-const { dbConn } = require('./mysql_config'); 
+const { dbConn } = require("./mysql_config");
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -35,7 +35,7 @@ console.log = function(message) {
 */
 
 app.listen(8000, function () {
-	console.log("Node app is running on port 8000");
+  console.log("Node app is running on port 8000");
 });
 
 // Json Web Token
@@ -60,7 +60,7 @@ app.use("/src", express.static(__dirname + "/src"));
 app.use("/public", express.static(__dirname + "/public"));
 
 app.use("/", routes);
-app.use(cors({ origin: "http://13.49.31.59", credentials: true }));
+app.use(cors({ origin: "http://13.49.31.59:8000", credentials: true }));
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
@@ -83,8 +83,8 @@ app.get(["/", "/index"], (req, res) => {
   }
 });
 
-dbConn.connect(function(err) {
-	console.log("[mysql error]", err);
+dbConn.connect(function (err) {
+  console.log("[mysql error]", err);
 });
 
 //get all members
@@ -96,7 +96,7 @@ app.get("/member", function (req, res) {
 });
 // get all glogin_members
 app.get("/member/glogin", function (req, res) {
-	  dbConn.query("SELECT * FROM glogin_table", function (error, results, fields) {
+  dbConn.query("SELECT * FROM glogin_table", function (error, results, fields) {
     if (error) throw error;
     return res.send({
       error: false,
@@ -311,7 +311,8 @@ app.post("/signup", function (req, res) {
       .status(400)
       .send({ error: true, message: "Please provide user" });
   }
-  dbConn.query("INSERT INTO member_table SET ? ",
+  dbConn.query(
+    "INSERT INTO member_table SET ? ",
     { username: username, pw: pw, pw_confirm: pw_confirm, email: email },
     function (error, results, fields) {
       if (error) throw error;
@@ -417,4 +418,3 @@ app.delete("/text", function (req, res) {
     }
   );
 });
-
