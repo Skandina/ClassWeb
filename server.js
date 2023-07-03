@@ -1,5 +1,6 @@
 #!/usr/bin/node
 
+const { dbConn } = require('./mysql_config'); 
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
@@ -7,6 +8,31 @@ var mysql = require("mysql");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
+
+/* Monitoring logs 
+const AWS = require('aws-sdk');
+AWS.config.update({ region: 'eu-north-1' });
+console.log("This is before the function has been created");
+console.log = function(message) {
+	const cloudwatchlogs = new AWS.CloudWatchLogs();
+	const params = {
+		logGroupName: 'test.log',
+		logStreamName: 'test.log',
+		logEvents: [
+			{
+				message: message,
+				timestamp: new Date().getTime()
+			}
+		]
+	};
+
+	cloudwatchlogs.putLogEvents(params, function(err, data) {
+		if (err) console.error(err, err.stack);
+//		else console.log('Logged to cloudWatch Logs');
+	});
+
+};
+*/
 
 app.listen(8000, function () {
 	console.log("Node app is running on port 8000");
@@ -57,21 +83,11 @@ app.get(["/", "/index"], (req, res) => {
   }
 });
 
-// connection configurations
-var dbConn = mysql.createConnection({
-  connectTimeout : 100000,
-  host: "13.49.31.59",
-  user: "kuser",
-  password: "sejhkweb",
-  database: "kweb",
-  port: 13306
-});
-
 dbConn.connect(function(err) {
 	console.log("[mysql error]", err);
 });
 
-// get all members
+//get all members
 app.get("/member", function (req, res) {
   dbConn.query("SELECT * FROM member_table", function (error, results, fields) {
     if (error) throw error;
