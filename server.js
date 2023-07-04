@@ -245,14 +245,14 @@ app.post("/login_process", async function (req, res) {
                 }
               );
             });
-            res.cookie("accessToken", accessToken);
-//	      domain: "13.49.31.59:8000",
-//             path: "/login_process",
-//            httpOnly: true,
-//            secure: true,
+            res.cookie("accessToken", accessToken, {
+            domain: "13.49.31.59:8000",
+            path: "/login_process",
+            httpOnly: true,
+            secure: true,
 //            sameSite: "none",
-//            overwrite: true,
-//          });
+            overwrite: true,
+            });
 	    console.log("======================TOKEN=================================");
 	    console.log(accessToken);
 	    console.log("COOKIES :", req.cookies);
