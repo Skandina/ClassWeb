@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
-/* Monitoring logs 
+// Monitoring logs 
 const AWS = require('aws-sdk');
 AWS.config.update({ region: 'eu-north-1' });
 console.log("This is before the function has been created");
@@ -32,7 +32,6 @@ console.log = function(message) {
 	});
 
 };
-*/
 
 app.listen(8000, function () {
   console.log("Node app is running on port 8000");
@@ -253,9 +252,6 @@ app.post("/login_process", async function (req, res) {
 //            sameSite: "none",
             overwrite: true,
             });
-	    console.log("======================TOKEN=================================");
-	    console.log(accessToken);
-	    console.log("COOKIES :", req.cookies);
             res.status(200).json({
               code: 200,
               success: true,
