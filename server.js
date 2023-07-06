@@ -9,29 +9,29 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
-// Monitoring logs 
-const AWS = require('aws-sdk');
-AWS.config.update({ region: 'eu-north-1' });
-console.log("This is before the function has been created");
-console.log = function(message) {
-	const cloudwatchlogs = new AWS.CloudWatchLogs();
-	const params = {
-		logGroupName: 'test.log',
-		logStreamName: 'test.log',
-		logEvents: [
-			{
-				message: message,
-				timestamp: new Date().getTime()
-			}
-		]
-	};
+// Monitoring logs
+// const AWS = require('aws-sdk');
+// AWS.config.update({ region: 'eu-north-1' });
+// console.log("This is before the function has been created");
+// console.log = function(message) {
+// 	const cloudwatchlogs = new AWS.CloudWatchLogs();
+// 	const params = {
+// 		logGroupName: 'test.log',
+// 		logStreamName: 'test.log',
+// 		logEvents: [
+// 			{
+// 				message: message,
+// 				timestamp: new Date().getTime()
+// 			}
+// 		]
+// 	};
 
-	cloudwatchlogs.putLogEvents(params, function(err, data) {
-		if (err) console.error(err, err.stack);
-//		else console.log('Logged to cloudWatch Logs');
-	});
+// 	cloudwatchlogs.putLogEvents(params, function(err, data) {
+// 		if (err) console.error(err, err.stack);
+// //		else console.log('Logged to cloudWatch Logs');
+// 	});
 
-};
+// };
 
 app.listen(8000, function () {
   console.log("Node app is running on port 8000");
@@ -63,8 +63,14 @@ app.use(cors({ origin: true, credentials: true }));
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
-  console.log("req: -----------------------------------------------------------", req);
-  console.log("Cookies: ----------------------------------------------------", req.cookies);
+  console.log(
+    "req: -----------------------------------------------------------",
+    req
+  );
+  console.log(
+    "Cookies: ----------------------------------------------------",
+    req.cookies
+  );
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
@@ -155,7 +161,7 @@ app.post("/glogin", function (req, res) {
               httpOnly: true,
             });
             res.cookie("accessToken", accessToken, {
-	      domain: "13.49.31.59",
+              domain: "13.49.31.59",
               path: "/",
               httpOnly: true,
               secure: true,
@@ -245,12 +251,12 @@ app.post("/login_process", async function (req, res) {
               );
             });
             res.cookie("accessToken", accessToken, {
-            domain: "13.49.31.59:8000",
-            path: "/login_process",
-            httpOnly: true,
-            secure: true,
-//            sameSite: "none",
-            overwrite: true,
+              domain: "13.49.31.59:8000",
+              path: "/login_process",
+              httpOnly: true,
+              secure: true,
+              //            sameSite: "none",
+              overwrite: true,
             });
             res.status(200).json({
               code: 200,
