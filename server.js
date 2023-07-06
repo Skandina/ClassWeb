@@ -10,7 +10,7 @@ const routes = require("./routes");
 const cors = require("cors");
 
 // Monitoring logs
-// const AWS = require('aws-sdk');
+const AWS = require("aws-sdk");
 // AWS.config.update({ region: 'eu-north-1' });
 // console.log("This is before the function has been created");
 // console.log = function(message) {
