@@ -9,7 +9,7 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
-// Monitoring logs 
+/*AWS CloudWatch  Monitoring logs 
 const AWS = require('aws-sdk');
 AWS.config.update({ region: 'eu-north-1' });
 console.log("This is before the function has been created");
@@ -32,7 +32,7 @@ console.log = function(message) {
 	});
 
 };
-
+*/
 app.listen(8000, function () {
   console.log("Node app is running on port 8000");
 });
@@ -63,8 +63,8 @@ app.use(cors({ origin: true, credentials: true }));
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
-  console.log("req: -----------------------------------------------------------", req);
-  console.log("Cookies: ----------------------------------------------------", req.cookies);
+  console.log("req: ", req);
+  console.log("Cookies: ", req.cookies);
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
@@ -188,8 +188,8 @@ app.post("/glogin", function (req, res) {
                 domain: "13.49.31.59",
                 path: "/",
                 httpOnly: true,
-                secure: true,
-                sameSite: "none",
+//                secure: true,
+//                sameSite: "none",
                 overwrite: true,
               });
               res.status(200).json({
@@ -245,10 +245,10 @@ app.post("/login_process", async function (req, res) {
               );
             });
             res.cookie("accessToken", accessToken, {
-            domain: "13.49.31.59:8000",
-            path: "/login_process",
+            domain: "13.49.31.59",
+            path: "/",
             httpOnly: true,
-            secure: true,
+//            secure: true,
 //            sameSite: "none",
             overwrite: true,
             });
@@ -292,8 +292,8 @@ app.get("/logout", (req, res) => {
     domain: "13.49.31.59",
     path: "/",
     httpOnly: true,
-    secure: true,
-    sameSite: "none",
+//    secure: true,
+//    sameSite: "none",
     overwrite: true,
   });
   res.end();
