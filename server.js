@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 const { dbConn } = require("./mysql_config");
 var express = require("express");
 var app = express();
@@ -9,8 +7,8 @@ const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
 
-// Monitoring logs
-const AWS = require("aws-sdk");
+// AWS CloudWatch Monitoring logs
+// const AWS = require("aws-sdk");
 // AWS.config.update({ region: 'eu-north-1' });
 // console.log("This is before the function has been created");
 // console.log = function(message) {
@@ -163,8 +161,8 @@ app.post("/glogin", function (req, res) {
             res.cookie("accessToken", accessToken, {
               domain: "13.49.31.59",
               path: "/",
-              httpOnly: true,
-              secure: true,
+              // httpOnly: true,
+              // secure: true,
               sameSite: "none",
             });
             res.status(200).json({
@@ -194,8 +192,8 @@ app.post("/glogin", function (req, res) {
                 domain: "13.49.31.59",
                 path: "/",
                 httpOnly: true,
-                secure: true,
-                sameSite: "none",
+                // secure: true,
+                // sameSite: "none",
                 overwrite: true,
               });
               res.status(200).json({
