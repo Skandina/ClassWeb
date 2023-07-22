@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "about": "About",
+    "board": "Bulletin Board",
+    "quiz": "Let's Quiz",
+    "korean": "KO",
+    "english": "EN",
+    "login": "Login",
+    "logout": "Logout",
+    "signup": "Signup"
+  },
+  "bulletinBoard": {
+    "all": "All",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "search": "Search"
+  }
+}

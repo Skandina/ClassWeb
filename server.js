@@ -6,6 +6,7 @@ var mysql = require("mysql");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
+const i18n = require("./i18n");
 
 // AWS CloudWatch Monitoring logs
 // const AWS = require("aws-sdk");
@@ -58,6 +59,18 @@ app.use("/public", express.static(__dirname + "/public"));
 
 app.use("/", routes);
 app.use(cors({ origin: true, credentials: true }));
+
+// i18n 초기화
+app.use(i18n);
+
+app.get("/en", (req, res) => {
+  res.cookie("lang", "en");
+  res.redirect("back");
+});
+app.get("/ko", (req, res) => {
+  res.cookie("lang", "ko");
+  res.redirect("back");
+});
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
