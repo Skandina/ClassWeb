@@ -57,11 +57,12 @@ app.engine("html", require("ejs").renderFile);
 app.use("/src", express.static(__dirname + "/src"));
 app.use("/public", express.static(__dirname + "/public"));
 
-app.use("/", routes);
 app.use(cors({ origin: true, credentials: true }));
 
 // i18n 초기화
 app.use(i18n);
+
+app.use("/", routes);
 
 app.get("/en", (req, res) => {
   res.cookie("lang", "en");
