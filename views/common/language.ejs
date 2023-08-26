@@ -1,0 +1,11 @@
+<select
+  id="lang-select"
+  class="form-select"
+  onchange="changeLanguage(this.value)"
+  aria-label="Default select example"
+>
+  <% const nav = __('nav') %>
+
+  <option id="koBtn" value="ko"><%= nav.korean %></option>
+  <option id="enBtn" value="en"><%= nav.english %></option>
+</select>
