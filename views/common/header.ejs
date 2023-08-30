@@ -2,21 +2,22 @@
   <div id="gnb">
     <nav>
       <ul id="menu-list">
+        <% const nav = __('nav') %>
         <li class="menu">
-          <a href="#">About</a>
+          <a href="#"><%= nav.about %></a>
         </li>
         <li class="menu">
-          <a href="board">Bulletin Board</a>
+          <a href="board"><%= nav.board %></a>
         </li>
         <li class="menu">
-          <a href="#">Let's Quiz</a>
+          <a href="#"><%= nav.quiz %></a>
         </li>
       </ul>
       <h1 id="nav-logo"><a href="/">HEJHEJKOREAN</a></h1>
       <ul id="top-menu">
-        <li><a href="#">KOR▼</a></li>
+        <li><%- include('language') %></li>
         <li id="log-btn">
-          <a id="logout-btn" href="#">Logout</a>
+          <a id="logout-btn" href="#"><%= nav.logout %></a>
         </li>
       </ul>
     </nav>

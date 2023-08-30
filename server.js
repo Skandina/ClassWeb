@@ -8,31 +8,32 @@ var mysql = require("mysql");
 const cookieParser = require("cookie-parser");
 const routes = require("./routes");
 const cors = require("cors");
+const i18n = require("./i18n");
 
-/*AWS CloudWatch  Monitoring logs 
-const AWS = require('aws-sdk');
-AWS.config.update({ region: 'eu-north-1' });
-console.log("This is before the function has been created");
-console.log = function(message) {
-	const cloudwatchlogs = new AWS.CloudWatchLogs();
-	const params = {
-		logGroupName: 'test.log',
-		logStreamName: 'test.log',
-		logEvents: [
-			{
-				message: message,
-				timestamp: new Date().getTime()
-			}
-		]
-	};
+// AWS CloudWatch Monitoring logs
+// const AWS = require("aws-sdk");
+// AWS.config.update({ region: 'eu-north-1' });
+// console.log("This is before the function has been created");
+// console.log = function(message) {
+// 	const cloudwatchlogs = new AWS.CloudWatchLogs();
+// 	const params = {
+// 		logGroupName: 'test.log',
+// 		logStreamName: 'test.log',
+// 		logEvents: [
+// 			{
+// 				message: message,
+// 				timestamp: new Date().getTime()
+// 			}
+// 		]
+// 	};
 
-	cloudwatchlogs.putLogEvents(params, function(err, data) {
-		if (err) console.error(err, err.stack);
-//		else console.log('Logged to cloudWatch Logs');
-	});
+// 	cloudwatchlogs.putLogEvents(params, function(err, data) {
+// 		if (err) console.error(err, err.stack);
+// //		else console.log('Logged to cloudWatch Logs');
+// 	});
 
-};
-*/
+// };
+
 app.listen(8000, function () {
   console.log("Node app is running on port 8000");
 });
@@ -58,24 +59,43 @@ app.engine("html", require("ejs").renderFile);
 app.use("/src", express.static(__dirname + "/src"));
 app.use("/public", express.static(__dirname + "/public"));
 
-app.use("/", routes);
 app.use(cors({ origin: true, credentials: true }));
+
+// i18n 초기화
+app.use(i18n);
+
+app.use("/", routes);
+
+app.get("/en", (req, res) => {
+  res.cookie("lang", "en");
+  res.redirect("back");
+});
+app.get("/ko", (req, res) => {
+  res.cookie("lang", "ko");
+  res.redirect("back");
+});
 
 let isLogin = false;
 app.get(["/", "/index"], (req, res) => {
-  console.log("req: ", req);
-  console.log("Cookies: ", req.cookies);
   const cookies = (req.headers.cookie || "").split("; ");
   const access_Token = cookies
     .filter((cookie) => cookie.includes("accessToken"))
     .map((cookie) => cookie.split("=")[1]);
+  const userId = cookies
+    .filter((cookie) => cookie.includes("userId"))
+    .map((cookie) => cookie.split("=")[1]);
   const username = req.body.username;
-  // console.log(username);
+
   if (access_Token.length === 0) {
-    // isLogin = false;
-    console.log("req(if): ", req);
-    console.log("Cookies(if): ", req.cookies);
-    res.render("login", { isLogin: isLogin });
+    //res.render("login", { isLogin: isLogin });
+    if (userId.length !== 0) {
+      res.render("login", {
+        isLogin: isLogin,
+        userId: decodeURIComponent(userId),
+      });
+    } else {
+      res.render("login", { isLogin: isLogin, userId: false });
+    }
   } else {
     isLogin = true;
     res.render("index", { username: username, isLogin: isLogin });
@@ -148,17 +168,17 @@ app.post("/glogin", function (req, res) {
         });
         if (error) throw error;
         if (results.length > 0) {
-          console.log("results", results);
+          // console.log("results", results);
           try {
             res.cookie("google_email", email, {
               expires: new Date(Date.now() + 900000),
               httpOnly: true,
             });
             res.cookie("accessToken", accessToken, {
-	      domain: "13.49.31.59",
+              domain: "13.49.31.59",
               path: "/",
-              httpOnly: true,
-              secure: true,
+              // httpOnly: true,
+              // secure: true,
               sameSite: "none",
             });
             res.status(200).json({
@@ -188,8 +208,8 @@ app.post("/glogin", function (req, res) {
                 domain: "13.49.31.59",
                 path: "/",
                 httpOnly: true,
-//                secure: true,
-//                sameSite: "none",
+                // secure: true,
+                // sameSite: "none",
                 overwrite: true,
               });
               res.status(200).json({
@@ -214,6 +234,7 @@ app.post("/glogin", function (req, res) {
 app.post("/login_process", async function (req, res) {
   let email = req.body.email;
   let pw = req.body.pw;
+  let rememberId = req.body.rememberId;
   if (email && pw) {
     dbConn.query(
       "SELECT * FROM member_table WHERE email = ? AND pw = ?",
@@ -245,30 +266,51 @@ app.post("/login_process", async function (req, res) {
               );
             });
             res.cookie("accessToken", accessToken, {
-            domain: "13.49.31.59",
-            path: "/",
-            httpOnly: true,
-//            secure: true,
-//            sameSite: "none",
-            overwrite: true,
+              domain: "13.49.31.59",
+              path: "/",
+              httpOnly: true,
+              //secure: true,
+              //sameSite: "none",
+              overwrite: true,
             });
-            res.status(200).json({
-              code: 200,
-              success: true,
-              accessToken: accessToken,
-            });
+            if (rememberId === "on") {
+              res.cookie("userId", email, {
+                domain: "13.49.31.59",
+                path: "/",
+                httpOnly: true,
+                //secure: true,
+                //sameSite: "none",
+                overwrite: true,
+                maxAge: 60 * 60 * 24 * 1000 * 7,
+              });
+              res.status(200).json({
+                code: 200,
+                success: true,
+                accessToken: accessToken,
+                userId: email,
+              });
+            } else {
+              res.clearCookie("userId", {
+                domain: "13.49.31.59",
+                path: "/",
+                httpOnly: true,
+                // secure: true,
+                // sameSite: "none",
+                overwrite: true,
+              });
+              res.status(200).json({
+                code: 200,
+                success: true,
+                accessToken: accessToken,
+              });
+              res.end();
+            }
           } catch (err) {
             res
               .status(401)
               .json({ success: false, errormessage: "token sign fail" });
           }
-          //		   });
         } else {
-          // res.send({
-          //   error: false,
-          //   data: results,
-          //   message: "Login information is not correct",
-          // });
           res.status(401).json({
             success: false,
             errormessage: "email and password are not identical",
@@ -277,7 +319,6 @@ app.post("/login_process", async function (req, res) {
       }
     );
   } else {
-    // res.send({ error: false, message: "Please insert username and password" });
     res.status(401).json({
       success: false,
       errormessage: "email and password are not identical",
@@ -292,8 +333,8 @@ app.get("/logout", (req, res) => {
     domain: "13.49.31.59",
     path: "/",
     httpOnly: true,
-//    secure: true,
-//    sameSite: "none",
+    // secure: true,
+    // sameSite: "none",
     overwrite: true,
   });
   res.end();

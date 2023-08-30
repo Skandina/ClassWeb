@@ -1,0 +1,19 @@
+{
+  "nav": {
+    "about": "소개",
+    "board": "게시판",
+    "quiz": "퀴즈풀기",
+    "korean": "한국어",
+    "english": "영어",
+    "login": "로그인",
+    "logout": "로그아웃",
+    "signup": "회원가입"
+  },
+  "bulletinBoard": {
+    "all": "전체",
+    "beginner": "초급",
+    "intermediate": "중급",
+    "advanced": "고급",
+    "search": "검색"
+  }
+}
