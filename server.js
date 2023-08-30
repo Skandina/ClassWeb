@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { dbConn } = require("./mysql_config");
 var express = require("express");
 var app = express();
